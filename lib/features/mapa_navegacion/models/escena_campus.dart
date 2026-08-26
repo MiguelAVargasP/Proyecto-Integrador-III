@@ -1,0 +1,58 @@
+import 'package:flutter/material.dart';
+
+/// Representa una escena seleccionable del campus (RF-02): un edificio o
+/// espacio representativo, marcado en el mapa ilustrado con una letra.
+///
+/// La [posicionRelativa] se expresa como fracción (0.0 a 1.0) del ancho y
+/// alto de la imagen del mapa, no en píxeles absolutos, para que los
+/// hotspots se reposicionen correctamente en cualquier tamaño de pantalla
+/// (`Positioned` calcula la posición real multiplicando por el tamaño
+/// disponible en tiempo de build).
+///
+/// IMPORTANTE: los valores de [posicionRelativa] de abajo son una primera
+/// estimación visual sobre la imagen `mapa_campus.png`. Ajústalos con la
+/// utilidad de calibración incluida en `MapaCampusScreen` (mantén
+/// presionado sobre el mapa en modo debug para ver la posición fraccional
+/// exacta donde tocaste, impresa en la consola).
+class EscenaCampus {
+  final String id; // Letra del marcador tal como aparece en el mapa (A-L)
+  final String nombre; // Nombre legible de la escena
+  final Offset posicionRelativa; // (dx, dy) entre 0.0 y 1.0
+
+  const EscenaCampus({
+    required this.id,
+    required this.nombre,
+    required this.posicionRelativa,
+  });
+}
+
+/// Catálogo de las escenas representativas del campus (RF-02): 12
+/// edificios marcados con letra (A-L) más el Templo, identificado con su
+/// propia etiqueta de texto en el mapa. Todas navegables desde ya; cuáles
+/// tienen contenido jugable real depende únicamente de qué haya en
+/// `registroContenidoEscenas` (ver `registro_inicial.dart`) — una escena
+/// sin contenido registrado sigue siendo navegable y muestra un
+/// placeholder, no se oculta del mapa.
+const List<EscenaCampus> escenasCampus = [
+  EscenaCampus(id: 'A', nombre: 'Bloque A', posicionRelativa: Offset(0.296, 0.563)),
+  EscenaCampus(id: 'B', nombre: 'Bloque B', posicionRelativa: Offset(0.335, 0.663)),
+  EscenaCampus(id: 'C', nombre: 'Bloque C', posicionRelativa: Offset(0.417, 0.663)),
+  EscenaCampus(id: 'D', nombre: 'Bloque D', posicionRelativa: Offset(0.493, 0.492)),
+  EscenaCampus(id: 'E', nombre: 'Bloque E', posicionRelativa: Offset(0.661, 0.455)),
+  EscenaCampus(id: 'F', nombre: 'Bloque F', posicionRelativa: Offset(0.727, 0.546)),
+  EscenaCampus(id: 'G', nombre: 'Bloque G', posicionRelativa: Offset(0.830, 0.623)),
+  EscenaCampus(id: 'H', nombre: 'Bloque H', posicionRelativa: Offset(0.792, 0.464)),
+  EscenaCampus(id: 'I', nombre: 'Bloque I', posicionRelativa: Offset(0.727, 0.255)),
+  EscenaCampus(id: 'J', nombre: 'Bloque J', posicionRelativa: Offset(0.490, 0.739)),
+  EscenaCampus(id: 'K', nombre: 'Bloque K', posicionRelativa: Offset(0.544, 0.191)),
+  EscenaCampus(id: 'L', nombre: 'Bloque L', posicionRelativa: Offset(0.831, 0.188)),
+  // A diferencia de A-L, el Templo no tiene un círculo con letra, pero sí
+  // tiene su propio marcador visual en la imagen: la etiqueta rectangular
+  // morada con el texto "TEMPLO". El hotspot se ubica exactamente sobre
+  // esa etiqueta.
+  EscenaCampus(
+    id: 'TEMPLO',
+    nombre: 'Templo',
+    posicionRelativa: Offset(0.156, 0.446),
+  ),
+];

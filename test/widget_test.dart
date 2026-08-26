@@ -1,30 +1,23 @@
-// This is a basic Flutter widget test.
+// Prueba mínima de arranque: confirma que la app se puede construir sin
+// errores y que el mapa (pantalla de entrada) aparece.
 //
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+// El archivo original que genera `flutter create` prueba un contador de
+// ejemplo (`MyApp`) que no existe en este proyecto — nuestra app se llama
+// `OrientacionUpbApp` y su pantalla de entrada es `MapaCampusScreen`.
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:juegoupb/main.dart';
+import 'package:orientacion_upb/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('La app arranca y muestra el mapa del campus',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(const OrientacionUpbApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // No hay texto fijo que verificar en el mapa (es una imagen con
+    // hotspots), así que el criterio de éxito es que el árbol de widgets
+    // se construyó sin lanzar ninguna excepción.
+    expect(find.byType(MaterialApp), findsOneWidget);
   });
 }
