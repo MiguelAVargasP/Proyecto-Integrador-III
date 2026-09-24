@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../core/estado_juego.dart';
 
 /// Pantalla de resultados finales (US-15).
 ///

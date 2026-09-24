@@ -230,7 +230,7 @@ class _CajaDialogoState extends State<CajaDialogo> {
       fit: StackFit.expand,
       children: [
         Positioned.fill(
-            child: _fondoEscena(widget.lineas.isNotEmpty ? widget.lineas.last : DialogoLinea(''))),
+            child: _fondoEscena(widget.lineas.isNotEmpty ? widget.lineas.last : const DialogoLinea(''))),
         Positioned(
           left: 16,
           right: 16,

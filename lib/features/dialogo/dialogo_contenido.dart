@@ -29,9 +29,8 @@ import 'pantallas/dialogo_screen.dart';
 /// marca la escena como visitada (RF-04) igual que cualquier otra.
 class DialogoContenido implements ContenidoEscena {
   final List<DialogoLinea> lineas;
-  final String? idEscena;
 
-  const DialogoContenido(this.lineas, {this.idEscena});
+  const DialogoContenido(this.lineas);
 
   @override
   Widget construir(BuildContext context, VoidCallback onCompletada) {
@@ -46,9 +45,8 @@ class DialogoContenido implements ContenidoEscena {
 class _LanzadorDialogo extends StatefulWidget {
   final List<DialogoLinea> lineas;
   final VoidCallback onCompletada;
-  final String? idEscena;
 
-  const _LanzadorDialogo({required this.lineas, required this.onCompletada, this.idEscena});
+  const _LanzadorDialogo({required this.lineas, required this.onCompletada});
 
   @override
   State<_LanzadorDialogo> createState() => _LanzadorDialogoState();
@@ -65,7 +63,6 @@ class _LanzadorDialogoState extends State<_LanzadorDialogo> {
           fullscreenDialog: true,
           builder: (_) => DialogoScreen(
             lineas: widget.lineas,
-            idEscena: widget.idEscena,
           ),
         ),
       );
