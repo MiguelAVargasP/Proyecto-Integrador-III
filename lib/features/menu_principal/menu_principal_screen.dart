@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import '../../core/estado_juego.dart';
+import '../../juego_identidad.dart';
 import '../progreso/progreso_screen.dart' as progreso;
 import '../resultados/resultados_screen.dart' as resultados;
 import '../decisiones/decisiones_screen.dart' as decisiones;
 import '../reiniciar/reiniciar_screen.dart' as reiniciar;
 import '../gestion_tiempo/gestion_tiempo_contenido.dart' as gestion;
 
-/// Pantalla de menu principal/activity (post-escena).
+/// Pantalla de menu principal (post-escena).
 ///
 /// Muestra las opciones disponibles al jugador despues de navegar por el mapa:
 /// ver progreso, resultados, decisiones, reiniciar, o volver al mapa.
-///
-/// Se integra como pantalla intermedia entre el mapa y las escenas,
-/// o como pantalla de cierre tras una escena.
 class MenuPrincipalScreen extends StatelessWidget {
   final VoidCallback onVolverAlMapa;
 
@@ -24,53 +22,86 @@ class MenuPrincipalScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: JuegoIdentidad.fondo,
       appBar: AppBar(
-        title: const Text('Orientacion UPB'),
-        backgroundColor: Colors.indigo,
+        title: const Text(JuegoIdentidad.titulo),
+        backgroundColor: JuegoIdentidad.primario,
         foregroundColor: Colors.white,
         leading: IconButton(
           icon: const Icon(Icons.map),
           onPressed: onVolverAlMapa,
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (_) => AlertDialog(
+                  backgroundColor: JuegoIdentidad.fondo,
+                  title: const Text('Reiniciar'),
+                  content: const Text(
+                    'Esta accion borra tu progreso actual. Continue?',
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: const Text('Cancelar'),
+                    ),
+                    FilledButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        onVolverAlMapa();
+                      },
+                      child: const Text('Continuar'),
+                    ),
+                  ],
+                ),
+              );
+            },
+            tooltip: 'Reiniciar (desde menu)',
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            _avatarGuia(),
+            const SizedBox(height: 16),
             _estadoActualCard(),
             const SizedBox(height: 24),
             _opcionMenu(
-              icon: Icons.trending_up,
+              icono: JuegoIdentidad.iconoProgreso(),
               titulo: 'Ver mi progreso',
               descripcion: 'Consulta tus etapas completadas, estres e insignias',
-              color: Colors.indigo,
+              color: JuegoIdentidad.acento1,
               onTap: () => _abrirProgreso(context),
             ),
             _opcionMenu(
-              icon: Icons.assessment,
+              icono: JuegoIdentidad.iconoResultados(),
               titulo: 'Ver resultados',
               descripcion: 'Consulta tu resultado parcial o final del recorrido',
-              color: Colors.amberAccent,
+              color: JuegoIdentidad.acento2,
               onTap: () => _abrirResultados(context),
             ),
             _opcionMenu(
-              icon: Icons.history,
+              icono: JuegoIdentidad.iconoDecisiones(),
               titulo: 'Ver mis decisiones',
               descripcion: 'Revisa las decisiones que has tomado y su impacto',
-              color: Colors.greenAccent,
+              color: JuegoIdentidad.exito,
               onTap: () => _abrirDecisiones(context),
             ),
             _opcionMenu(
-              icon: Icons.refresh,
+              icono: JuegoIdentidad.iconoReiniciar(),
               titulo: 'Reiniciar recorrido',
               descripcion: 'Borra tu progreso y comienza de nuevo',
-              color: Colors.redAccent,
+              color: JuegoIdentidad.alerta,
               onTap: () => _abrirReiniciar(context),
             ),
             _opcionMenu(
-              icon: Icons.timer,
+              icono: JuegoIdentidad.iconoGestionTiempo(),
               titulo: 'Gestion del tiempo',
               descripcion: 'Distribuye tus horas entre actividades academicas y no academicas',
               color: Colors.purpleAccent,
@@ -82,22 +113,41 @@ class MenuPrincipalScreen extends StatelessWidget {
     );
   }
 
+  Widget _avatarGuia() {
+    return Column(
+      children: [
+        JuegoIdentidad.avatar(size: 56),
+        const SizedBox(height: 8),
+        const Text(
+          'Tu guia en el recorrido',
+          style: TextStyle(color: Colors.white38, fontSize: 11),
+        ),
+      ],
+    );
+  }
+
   Widget _estadoActualCard() {
     return Card(
-      color: Colors.grey[900],
+      color: JuegoIdentidad.panel,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Estado actual',
-              style: TextStyle(
-                  color: Colors.amberAccent,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 14),
+            Row(
+              children: [
+                JuegoIdentidad.avatar(size: 32),
+                const SizedBox(width: 8),
+                const Text(
+                  'Estado actual',
+                  style: TextStyle(
+                      color: JuegoIdentidad.acento2,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14),
+                ),
+              ],
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 12),
             _filaEstado('Etapas', '${estadoJuego.etapasCompletadas}/${EstadoJuego.totalEtapas}'),
             _filaEstado('Estres', '${estadoJuego.nivelEstres}/100'),
             _filaEstado('Insignias', '${estadoJuego.insigniasObtenidas.length}'),
@@ -116,21 +166,21 @@ class MenuPrincipalScreen extends StatelessWidget {
         children: [
           Text(label, style: const TextStyle(color: Colors.white70)),
           Text(value,
-              style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+              style: const TextStyle(color: JuegoIdentidad.texto, fontWeight: FontWeight.bold)),
         ],
       ),
     );
   }
 
   Widget _opcionMenu({
-    required IconData icon,
+    required IconData icono,
     required String titulo,
-    required String descripcion,
+    String? descripcion,
     required Color color,
     required VoidCallback onTap,
   }) {
     return Card(
-      color: Colors.grey[900],
+      color: JuegoIdentidad.panel,
       margin: const EdgeInsets.only(bottom: 8),
       child: InkWell(
         onTap: onTap,
@@ -145,7 +195,7 @@ class MenuPrincipalScreen extends StatelessWidget {
                   color: color.withOpacity(0.2),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Icon(icon, color: color, size: 24),
+                child: Icon(icono, color: color, size: 24),
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -155,19 +205,22 @@ class MenuPrincipalScreen extends StatelessWidget {
                     Text(
                       titulo,
                       style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15),
+                        color: JuegoIdentidad.texto,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                    const SizedBox(height: 2),
-                    Text(
-                      descripcion,
-                      style: const TextStyle(color: Colors.white70, fontSize: 12),
-                    ),
+                    if (descripcion != null)
+                      Text(
+                        descripcion,
+                        style: const TextStyle(
+                          color: Colors.white38,
+                          fontSize: 11,
+                        ),
+                      ),
                   ],
                 ),
               ),
-              const Icon(Icons.chevron_right, color: Colors.white38),
             ],
           ),
         ),
