@@ -60,11 +60,35 @@ class _CajaDialogoState extends State<CajaDialogo> {
       estadoJuego.ajustarEstres(opcion.deltaEstres!);
     }
     if (opcion.decisionRegistrada != null) {
-      final contextoEscena = widget.idEscena;
-      final txt = contextoEscena != null
-          ? '[$contextoEscena] ${opcion.decisionRegistrada}'
-          : opcion.decisionRegistrada!;
-      estadoJuego.registrarDecision(txt);
+      // US-16: advertencia previa a decisiones de alto impacto
+      final txtBase = opcion.decisionRegistrada!;
+      if (estadoJuego.esDecicionAltoImpacto(txtBase)) {
+        showDialog(
+          context: context,
+          builder: (_) => AlertDialog(
+            backgroundColor: Colors.black,
+            title: const Text('Decision de alto impacto',
+                style: TextStyle(color: Colors.orange, fontWeight: FontWeight.bold)),
+            content: Text(
+                'Esta decision puede afectar tu preparacion. Continue?'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: const Text('Cancelar'),
+              ),
+              FilledButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  _confirmarDecision(txtBase, opcion);
+                },
+                child: const Text('Continuar'),
+              ),
+            ],
+          ),
+        );
+      } else {
+        _confirmarDecision(txtBase, opcion);
+      }
     }
     if (opcion.insignia != null) {
       estadoJuego.otorgarInsignia(opcion.insignia!);
@@ -75,6 +99,14 @@ class _CajaDialogoState extends State<CajaDialogo> {
     } else {
       _avanzar();
     }
+  }
+
+  void _confirmarDecision(String txtBase, OpcionDialogo opcion) {
+    final contextoEscena = widget.idEscena;
+    final txt = contextoEscena != null
+        ? '[$contextoEscena] $txtBase'
+        : txtBase;
+    estadoJuego.registrarDecision(txt);
   }
 
   Widget _fondoEscena(DialogoLinea linea) {

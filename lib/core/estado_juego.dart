@@ -51,6 +51,28 @@ class EstadoJuego extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Devuelve verdadero si la descripción coincide con patrones de decisiones
+  /// de alto impacto (RF-16: el sistema advierte antes de estas decisiones).
+  bool esDecicionAltoImpacto(String descripcion) {
+    final palabrasClave = [
+      'estudiar menos',
+      'rendirse',
+      'no estudiar',
+      'delegar toda',
+      'copiar',
+      'plagio',
+      'entregar tarde',
+      'faltar a clase',
+      'impunidad',
+      'evadir',
+    ];
+    final lower = descripcion.toLowerCase();
+    for (final palabra in palabrasClave) {
+      if (lower.contains(palabra)) return true;
+    }
+    return false;
+  }
+
   // --- RF-10 / US-10: insignias por hitos ---
   final Set<String> insigniasObtenidas = {};
 
