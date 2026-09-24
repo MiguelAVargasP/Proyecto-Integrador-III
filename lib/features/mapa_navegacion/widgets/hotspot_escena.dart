@@ -10,6 +10,7 @@ class HotspotEscena extends StatelessWidget {
   final EscenaCampus escena;
   final bool esActual;
   final bool visitada;
+  final bool etapaCompletada;
   final VoidCallback onTap;
 
   /// Tamaño del área táctil. 48 es el mínimo recomendado de accesibilidad
@@ -23,6 +24,7 @@ class HotspotEscena extends StatelessWidget {
     required this.onTap,
     this.esActual = false,
     this.visitada = false,
+    this.etapaCompletada = false,
   });
 
   @override
@@ -36,8 +38,21 @@ class HotspotEscena extends StatelessWidget {
         child: SizedBox(
           width: tamano,
           height: tamano,
-          child: esActual
-              ? Container(
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              // Si la etapa está completada, mostrar círculo verde de progreso
+              if (etapaCompletada)
+                Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.greenAccent.withOpacity(0.3),
+                    border: Border.all(color: Colors.greenAccent, width: 2),
+                  ),
+                )
+              // Si es la escena actual, resaltar con anillo blanco
+              else if (esActual)
+                Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(color: Colors.white, width: 3),
@@ -48,8 +63,9 @@ class HotspotEscena extends StatelessWidget {
                       ),
                     ],
                   ),
-                )
-              : null,
+                ),
+            ],
+          ),
         ),
       ),
     );

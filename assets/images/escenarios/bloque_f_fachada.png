@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="skyF" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2d1b69"/>
+      <stop offset="50%" style="stop-color:#4a1942"/>
+      <stop offset="100%" style="stop-color:#2d1b69"/>
+    </linearGradient>
+    <linearGradient id="buildF" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#6a1b69"/>
+      <stop offset="100%" style="stop-color:#4a1942"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#skyF)"/>
+  <rect x="100" y="180" width="600" height="320" rx="4" fill="url(#buildF)" stroke="#c77dff" stroke-width="2"/>
+  <rect x="100" y="180" width="600" height="20" rx="4" fill="#c77dff"/>
+  <rect x="140" y="220" width="60" height="80" rx="2" fill="#2d1b69" stroke="#c77dff" stroke-width="1"/>
+  <rect x="220" y="220" width="60" height="80" rx="2" fill="#2d1b69" stroke="#c77dff" stroke-width="1"/>
+  <rect x="300" y="220" width="60" height="80" rx="2" fill="#2d1b69" stroke="#c77dff" stroke-width="1"/>
+  <rect x="380" y="220" width="60" height="80" rx="2" fill="#2d1b69" stroke="#c77dff" stroke-width="1"/>
+  <rect x="460" y="220" width="60" height="80" rx="2" fill="#2d1b69" stroke="#c77dff" stroke-width="1"/>
+  <rect x="540" y="220" width="60" height="80" rx="2" fill="#2d1b69" stroke="#c77dff" stroke-width="1"/>
+  <rect x="140" y="320" width="60" height="80" rx="2" fill="#2d1b69" stroke="#c77dff" stroke-width="1"/>
+  <rect x="220" y="320" width="60" height="80" rx="2" fill="#2d1b69" stroke="#c77dff" stroke-width="1"/>
+  <rect x="300" y="320" width="60" height="80" rx="2" fill="#2d1b69" stroke="#c77dff" stroke-width="1"/>
+  <rect x="380" y="320" width="60" height="80" rx="2" fill="#2d1b69" stroke="#c77dff" stroke-width="1"/>
+  <rect x="460" y="320" width="60" height="80" rx="2" fill="#2d1b69" stroke="#c77dff" stroke-width="1"/>
+  <rect x="540" y="320" width="60" height="80" rx="2" fill="#2d1b69" stroke="#c77dff" stroke-width="1"/>
+  <text x="400" y="175" text-anchor="middle" fill="#E0B0FF" font-size="18" font-weight="bold" font-family="Arial">Bloque F</text>
+</svg>

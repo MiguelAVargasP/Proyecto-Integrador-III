@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../core/contenido_escena.dart';
 import '../../../core/estado_juego.dart';
+import '../../../features/mapa_navegacion/state/estado_mapa.dart';
 import '../pantallas/parcial_combate_screen.dart';
 
 /// Contenido jugable de la escena del parcial simulado (RF-05, RF-08).
@@ -58,6 +59,7 @@ class _ParcialIntro extends StatelessWidget {
                   ),
                 );
                 onCompletada();
+                estadoMapa.completarEtapa('D');
               },
             ),
           ],

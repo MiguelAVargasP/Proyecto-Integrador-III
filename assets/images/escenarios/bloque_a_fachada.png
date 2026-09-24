@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB"/>
+      <stop offset="100%" style="stop-color:#E0F0FF"/>
+    </linearGradient>
+    <linearGradient id="building" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A90D9"/>
+      <stop offset="100%" style="stop-color:#2C5F8A"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#90C080"/>
+      <stop offset="100%" style="stop-color:#609050"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Cielo -->
+  <rect width="800" height="600" fill="url(#sky)"/>
+  
+  <!-- Sol -->
+  <circle cx="700" cy="80" r="40" fill="#FFD700" opacity="0.8"/>
+  
+  <!-- Nubes -->
+  <g opacity="0.7">
+    <ellipse cx="150" cy="80" rx="60" ry="30" fill="white"/>
+    <ellipse cx="180" cy="70" rx="40" ry="25" fill="white"/>
+    <ellipse cx="120" cy="70" rx="35" ry="20" fill="white"/>
+  </g>
+  
+  <g opacity="0.6">
+    <ellipse cx="500" cy="100" rx="50" ry="25" fill="white"/>
+    <ellipse cx="530" cy="90" rx="35" ry="20" fill="white"/>
+  </g>
+  
+  <!-- Suelo -->
+  <rect x="0" y="450" width="800" height="150" fill="url(#ground)"/>
+  
+  <!-- Edificio principal (Bloque universitario) -->
+  <g>
+    <!-- Fachada principal -->
+    <rect x="250" y="200" width="300" height="250" fill="url(#building)" rx="3"/>
+    
+    <!-- Techo -->
+    <rect x="240" y="190" width="320" height="15" fill="#3A7BC8" rx="2"/>
+    
+    <!-- Ventanas fila 1 -->
+    <rect x="275" y="220" width="40" height="50" fill="#87CEEB" stroke="#3A7BC8" stroke-width="2" rx="2"/>
+    <rect x="330" y="220" width="40" height="50" fill="#87CEEB" stroke="#3A7BC8" stroke-width="2" rx="2"/>
+    <rect x="385" y="220" width="40" height="50" fill="#87CEEB" stroke="#3A7BC8" stroke-width="2" rx="2"/>
+    <rect x="440" y="220" width="40" height="50" fill="#87CEEB" stroke="#3A7BC8" stroke-width="2" rx="2"/>
+    <rect x="495" y="220" width="40" height="50" fill="#87CEEB" stroke="#3A7BC8" stroke-width="2" rx="2"/>
+    
+    <!-- Ventanas fila 2 -->
+    <rect x="275" y="290" width="40" height="50" fill="#87CEEB" stroke="#3A7BC8" stroke-width="2" rx="2"/>
+    <rect x="330" y="290" width="40" height="50" fill="#87CEEB" stroke="#3A7BC8" stroke-width="2" rx="2"/>
+    <rect x="385" y="290" width="40" height="50" fill="#87CEEB" stroke="#3A7BC8" stroke-width="2" rx="2"/>
+    <rect x="440" y="290" width="40" height="50" fill="#87CEEB" stroke="#3A7BC8" stroke-width="2" rx="2"/>
+    <rect x="495" y="290" width="40" height="50" fill="#87CEEB" stroke="#3A7BC8" stroke-width="2" rx="2"/>
+    
+    <!-- Puerta principal -->
+    <rect x="370" y="370" width="60" height="80" fill="#5C4033" rx="3"/>
+    <rect x="375" y="375" width="50" height="70" fill="#8B7355" rx="2"/>
+    <circle cx="415" cy="410" r="3" fill="#FFD700"/>
+    
+    <!-- Plataforma/patio -->
+    <rect x="340" y="450" width="120" height="10" fill="#A0A0A0"/>
+    <rect x="345" y="455" width="110" height="5" fill="#808080"/>
+  </g>
+  
+  <!-- Estacionamiento pequeño -->
+  <g>
+    <rect x="100" y="460" width="80" height="40" fill="#555" rx="2"/>
+    <rect x="105" y="465" width="35" height="30" fill="#FFF" opacity="0.3"/>
+    <rect x="145" y="465" width="35" height="30" fill="#FFF" opacity="0.3"/>
+    <line x1="122" y1="460" x2="122" y2="500" stroke="white" stroke-width="2"/>
+  </g>
+  
+  <!-- Árboles -->
+  <g>
+    <rect x="170" y="400" width="8" height="50" fill="#6B4226"/>
+    <circle cx="174" cy="390" r="25" fill="#228B22"/>
+    <circle cx="165" cy="395" r="15" fill="#2E8B2E"/>
+    <circle cx="183" cy="395" r="15" fill="#2E8B2E"/>
+  </g>
+  
+  <g>
+    <rect x="550" y="410" width="8" height="40" fill="#6B4226"/>
+    <circle cx="554" cy="400" r="20" fill="#228B22"/>
+    <circle cx="545" cy="405" r="12" fill="#2E8B2E"/>
+  </g>
+  
+  <!-- Texto placeholder -->
+  <text x="400" y="530" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#333" font-weight="bold">
+    Bloque Universitario
+  </text>
+  <text x="400" y="555" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#666">
+    [Plantilla de escenario — reemplazar con imagen real de UPB]
+  </text>
+</svg>

@@ -8,12 +8,12 @@ import '../motor/input_manager.dart';
 import 'controller.dart';
 import 'damage_system.dart';
 import 'fighter.dart';
+import 'super_manager.dart';
 
 const double _anchoArena = 320;
 const double _altoArena = 180;
 const double _altoSuelo = 20;
 const double _ySuelo = _altoArena - _altoSuelo;
-const double _gravedad = 400.0;
 
 /// Escena de práctica simplificada: jugador (control táctil) contra un
 /// muñeco de práctica que no se mueve (`DummyController`). Equivalente
@@ -21,17 +21,17 @@ const double _gravedad = 400.0;
 /// JSON, sin IA todavía; sirve para verificar que Fighter + físicas +
 /// DamageSystem funcionan juntos de punta a punta.
 class CombatArenaScene extends CombatScene {
-  final PhysicsSystem physicsSystem = PhysicsSystem(gravity: _gravedad);
+  final PhysicsSystem physicsSystem;
   final DamageSystem damageSystem = DamageSystem();
 
   late final Fighter player;
   late final Fighter dummy;
 
-  /// Etapa 7: el nivel de estrés acumulado en `EstadoJuego` reduce la vida
-  /// máxima del jugador al entrar al parcial — las decisiones de gestión
-  /// del tiempo de historias anteriores (US-06/US-08) tienen consecuencia
-  /// mecánica real en el combate, no solo narrativa.
-  CombatArenaScene(InputManager inputManager, {double vidaMaximaJugador = 100.0}) {
+  CombatArenaScene(
+    InputManager inputManager, {
+    double vidaMaximaJugador = 100.0,
+    SuperManager? superManager,
+  }) : physicsSystem = PhysicsSystem() {
     backgroundColor = const Color(0xFF283A28); // verde oscuro de práctica
 
     physicsSystem.setFloorY(_ySuelo);
@@ -63,6 +63,11 @@ class CombatArenaScene extends CombatScene {
       facingInicial: -1,
       name: 'Muñeco de práctica',
     );
+
+    // Conecta la superhabilidad del jugador si se proporcionó.
+    if (superManager != null) {
+      player.superManager.ability = superManager.ability;
+    }
 
     addEntity(player);
     addEntity(dummy);

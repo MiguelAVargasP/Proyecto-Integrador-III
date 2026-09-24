@@ -14,18 +14,26 @@ import 'package:flutter/foundation.dart';
 class EstadoMapa extends ChangeNotifier {
   String? _escenaActualId;
   final Set<String> _escenasVisitadas = {};
+  final Set<String> _etapasCompletadas = {};
 
   String? get escenaActualId => _escenaActualId;
   Set<String> get escenasVisitadas => Set.unmodifiable(_escenasVisitadas);
+  Set<String> get etapasCompletadas => Set.unmodifiable(_etapasCompletadas);
 
   bool fueVisitada(String escenaId) => _escenasVisitadas.contains(escenaId);
   bool esEscenaActual(String escenaId) => _escenaActualId == escenaId;
+  bool etapaCompletada(String escenaId) => _etapasCompletadas.contains(escenaId);
 
-  /// Se llama al navegar hacia una escena (RF-03) y marca la escena como
-  /// visitada (insumo directo para US-04).
   void seleccionarEscena(String escenaId) {
     _escenaActualId = escenaId;
     _escenasVisitadas.add(escenaId);
+    notifyListeners();
+  }
+
+  /// Marca una etapa del ciclo estudiantil (FASE_2, FASE_3) como completada.
+  /// Se llama desde la escena jugable al finalizarla con éxito.
+  void completarEtapa(String escenaId) {
+    _etapasCompletadas.add(escenaId);
     notifyListeners();
   }
 }

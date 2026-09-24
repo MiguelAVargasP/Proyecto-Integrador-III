@@ -31,6 +31,15 @@ class _MapaCampusScreenState extends State<MapaCampusScreen> {
 
   void _onEstadoCambiado() => setState(() {});
 
+  /// Indica si una escena es una etapa del ciclo estudiantil (US-05) que
+  /// puede mostrarse como completada en el marcador del mapa.
+  bool _esEtapaCompletada(EscenaCampus escena) {
+    if (escena.id == 'FASE_2' || escena.id == 'FASE_3' || escena.id == 'D') {
+      return estadoMapa.etapaCompletada(escena.id);
+    }
+    return false;
+  }
+
   Future<void> _irAEscena(EscenaCampus escena) async {
     estadoMapa.seleccionarEscena(escena.id);
     await Navigator.of(context).push(
@@ -90,6 +99,7 @@ class _MapaCampusScreenState extends State<MapaCampusScreen> {
                       escena: escena,
                       esActual: estadoMapa.esEscenaActual(escena.id),
                       visitada: estadoMapa.fueVisitada(escena.id),
+                      etapaCompletada: _esEtapaCompletada(escena),
                       onTap: () => _irAEscena(escena),
                     ),
                   ),

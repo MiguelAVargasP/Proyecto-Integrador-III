@@ -55,4 +55,16 @@ const List<EscenaCampus> escenasCampus = [
     nombre: 'Templo',
     posicionRelativa: Offset(0.125, 0.435),
   ),
+  // Etapas del ciclo estudiantil (US-05): hitos del recorrido, no edificios
+  // físicos — aparecen en el mapa como marcadores de progreso.
+  EscenaCampus(
+    id: 'FASE_2',
+    nombre: 'Primeras clases',
+    posicionRelativa: Offset(0.35, 0.35),
+  ),
+  EscenaCampus(
+    id: 'FASE_3',
+    nombre: 'Estudio independiente',
+    posicionRelativa: Offset(0.55, 0.30),
+  ),
 ];

@@ -1,4 +1,4 @@
-import '../juego/card.dart';
+import 'card.dart';
 import 'skill.dart';
 
 /// Catálogo dirigido por datos que asigna cartas a habilidades

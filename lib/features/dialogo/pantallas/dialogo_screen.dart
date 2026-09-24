@@ -9,8 +9,9 @@ import '../widgets/caja_dialogo.dart';
 /// (mismo patrón que ya usa el combate del parcial).
 class DialogoScreen extends StatelessWidget {
   final List<DialogoLinea> lineas;
+  final String? idEscena;
 
-  const DialogoScreen({super.key, required this.lineas});
+  const DialogoScreen({super.key, required this.lineas, this.idEscena});
 
   @override
   Widget build(BuildContext context) {

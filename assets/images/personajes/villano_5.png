@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500">
+  <defs>
+    <linearGradient id="bgE" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f0f1a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="skinE" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0d5b8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#deb887;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="shirtE" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#6c5b7b;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#bgE)" rx="12"/>
+  
+  <ellipse cx="200" cy="480" rx="145" ry="60" fill="#6c5b7b"/>
+  <rect x="180" y="280" width="40" height="50" rx="6" fill="url(#skinE)"/>
+  <ellipse cx="200" cy="230" rx="65" ry="80" fill="url(#skinE)"/>
+  
+  <!-- straight hair -->
+  <path d="M135 225 Q130 155 170 140 Q200 125 230 140 Q270 155 265 225 L265 350 Q200 370 135 350 Z" fill="#2c1810"/>
+  
+  <ellipse cx="180" cy="232" rx="6" ry="7" fill="#1a1a2e"/>
+  <ellipse cx="220" cy="232" rx="6" ry="7" fill="#1a1a2e"/>
+  <circle cx="181" cy="230" r="2" fill="white" opacity="0.7"/>
+  <circle cx="221" cy="230" r="2" fill="white" opacity="0.7"/>
+  
+  <path d="M170 218 Q180 215 192 219" stroke="#2c1810" stroke-width="2.5" fill="none"/>
+  <path d="M208 219 Q220 215 230 218" stroke="#2c1810" stroke-width="2.5" fill="none"/>
+  
+  <path d="M200 240 Q196 250 200 256 Q204 250 200 240" stroke="#c4956a" stroke-width="1.5" fill="none"/>
+  
+  <path d="M185 268 Q200 275 215 268" stroke="#a0522d" stroke-width="2" fill="none"/>
+  
+  <path d="M60 440 Q200 420 340 440" stroke="#5b4a6b" stroke-width="6" fill="none" stroke-linecap="round"/>
+  
+  <!-- book -->
+  <rect x="170" y="340" width="60" height="45" rx="3" fill="#8B4513" transform="rotate(-8 200 362)"/>
+  <rect x="170" y="340" width="60" height="45" rx="3" fill="none" stroke="#D2691E" stroke-width="2" transform="rotate(-8 200 362)"/>
+  <line x1="200" y1="340" x2="200" y2="385" stroke="#F5DEB3" stroke-width="1.5" transform="rotate(-8 200 362)"/>
+</svg>

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500">
+  <defs>
+    <linearGradient id="bgD" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1b4332;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#081c15;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="skinD" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f5d0a9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#deb887;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="shirtD" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2d6a4f;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#bgD)" rx="12"/>
+  
+  <ellipse cx="200" cy="480" rx="145" ry="60" fill="#2d6a4f"/>
+  <rect x="180" y="280" width="40" height="50" rx="6" fill="url(#skinD)"/>
+  <ellipse cx="200" cy="230" rx="65" ry="80" fill="url(#skinD)"/>
+  
+  <!-- curly hair -->
+  <path d="M140 230 Q120 190 140 170 Q160 140 200 145 Q240 140 260 170 Q280 190 260 230" fill="#1a1a1a"/>
+  <circle cx="155" cy="175" r="15" fill="#1a1a1a"/>
+  <circle cx="185" cy="155" r="12" fill="#1a1a1a"/>
+  <circle cx="215" cy="155" r="12" fill="#1a1a1a"/>
+  <circle cx="245" cy="175" r="15" fill="#1a1a1a"/>
+  
+  <ellipse cx="180" cy="235" rx="6" ry="7" fill="#1a1a2e"/>
+  <ellipse cx="220" cy="235" rx="6" ry="7" fill="#1a1a2e"/>
+  <circle cx="181" cy="233" r="2" fill="white" opacity="0.7"/>
+  <circle cx="221" cy="233" r="2" fill="white" opacity="0.7"/>
+  
+  <path d="M170 220 Q180 217 192 221" stroke="#1a1a1a" stroke-width="2.5" fill="none"/>
+  <path d="M208 221 Q220 217 230 220" stroke="#1a1a1a" stroke-width="2.5" fill="none"/>
+  
+  <path d="M200 240 Q196 254 200 258 Q204 254 200 240" stroke="#c4956a" stroke-width="1.5" fill="none"/>
+  
+  <path d="M185 268 Q200 275 215 268" stroke="#a0522d" stroke-width="2" fill="none"/>
+  
+  <!-- headphones -->
+  <path d="M145 230 Q140 200 160 190 Q200 180 240 190 Q260 200 255 230" stroke="#333" stroke-width="3" fill="none"/>
+  <rect x="135" y="225" width="14" height="20" rx="4" fill="#333"/>
+  <rect x="251" y="225" width="14" height="20" rx="4" fill="#333"/>
+  
+  <path d="M60 440 Q200 420 340 440" stroke="#3d6a5f" stroke-width="6" fill="none" stroke-linecap="round"/>
+  
+  <!-- badge -->
+  <circle cx="200" cy="300" r="14" fill="#FFC107" opacity="0.9"/>
+  <text x="200" y="304" text-anchor="middle" font-size="11" fill="#1b4332" font-weight="bold">UPB</text>
+</svg>

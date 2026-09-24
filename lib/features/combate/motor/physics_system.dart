@@ -19,7 +19,10 @@ class PhysicsSystem {
   double? floorY;
   Bounds? bounds;
 
-  PhysicsSystem({this.gravity = 275.0});
+  /// Valor por defecto alineado con el motor original (275 px/s²).
+  static const double defaultGravity = 275.0;
+
+  PhysicsSystem({this.gravity = defaultGravity});
 
   /// Define la coordenada y (espacio de mundo) de la superficie del suelo.
   void setFloorY(double y) => floorY = y;

@@ -135,11 +135,11 @@ class _CombateArenaScreenState extends State<CombateArenaScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                _boton('attack_high', Icons.arrow_upward, color: Colors.red.withValues(alpha: 0.6)),
+                _boton('attack_high', Icons.arrow_upward, color: Colors.red.withOpacity(0.6)),
                 const SizedBox(height: 8),
-                _boton('attack_low', Icons.arrow_downward, color: Colors.orange.withValues(alpha: 0.6)),
+                _boton('attack_low', Icons.arrow_downward, color: Colors.orange.withOpacity(0.6)),
                 const SizedBox(height: 8),
-                _boton('block', Icons.shield, color: Colors.blue.withValues(alpha: 0.6)),
+                _boton('block', Icons.shield, color: Colors.blue.withOpacity(0.6)),
               ],
             ),
           ),

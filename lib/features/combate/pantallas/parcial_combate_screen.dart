@@ -54,8 +54,11 @@ class _ParcialCombateScreenState extends State<ParcialCombateScreen> {
     // disponible para el parcial: 100 en estrés 0, hasta un mínimo de 40
     // en estrés 100 — nunca deja al jugador sin posibilidad real de ganar.
     final vidaMaxima = 100.0 - (estadoJuego.nivelEstres * 0.6);
-    _scene = CombatArenaScene(_inputManager, vidaMaximaJugador: vidaMaxima.clamp(40.0, 100.0));
-    _scene.player.superManager.ability = _superManager.ability;
+    _scene = CombatArenaScene(
+      _inputManager,
+      vidaMaximaJugador: vidaMaxima.clamp(40.0, 100.0),
+      superManager: _superManager,
+    );
   }
 
   void _resolverResultado() {
@@ -170,11 +173,11 @@ class _ParcialCombateScreenState extends State<ParcialCombateScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          _boton('attack_high', Icons.arrow_upward, color: Colors.red.withValues(alpha: 0.6)),
+          _boton('attack_high', Icons.arrow_upward, color: Colors.red.withOpacity(0.6)),
           const SizedBox(height: 8),
-          _boton('attack_low', Icons.arrow_downward, color: Colors.orange.withValues(alpha: 0.6)),
+          _boton('attack_low', Icons.arrow_downward, color: Colors.orange.withOpacity(0.6)),
           const SizedBox(height: 8),
-          _boton('block', Icons.shield, color: Colors.blue.withValues(alpha: 0.6)),
+          _boton('block', Icons.shield, color: Colors.blue.withOpacity(0.6)),
         ],
       ),
     );

@@ -23,6 +23,13 @@ class EstadoJuego extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Retorna las horas asignadas previamente por actividad, o null si no
+  /// hay guardado persistente disponible. Las pantallas llaman este método
+  /// y verifican el null para usar valores por defecto.
+  Future<Map<String, int>?> cargarTiempo(List<String> actividadesClave) async {
+    return null;
+  }
+
   // --- RF-08 / US-08: consecuencias acumuladas y estrés ---
   /// 0 = totalmente preparado, 100 = máximo estrés/menor preparación.
   int nivelEstres = 0;
@@ -69,6 +76,19 @@ class EstadoJuego extends ChangeNotifier {
     if (nivelEstres < 30) return 'Bien preparado';
     if (nivelEstres < 70) return 'Preparación irregular';
     return 'Poco preparado';
+  }
+
+  /// Reinicia un recorrido completo, borrando progreso, estrés, insignias,
+  /// decisiones y tiempo asignado. Luego notifica a los listeners para que
+  /// las pantallas se actualicen.
+  void resetear() {
+    nivelEstres = 0;
+    tiempoDisponibleHoras = 0;
+    tiempoAsignadoPorActividad.clear();
+    etapasCompletadas = 0;
+    insigniasObtenidas.clear();
+    decisionesTomadas.clear();
+    notifyListeners();
   }
 }
 

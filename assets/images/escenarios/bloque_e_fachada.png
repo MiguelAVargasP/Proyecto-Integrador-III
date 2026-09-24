@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="skyE" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1b4332"/>
+      <stop offset="50%" style="stop-color:#2d6a4f"/>
+      <stop offset="100%" style="stop-color:#1b4332"/>
+    </linearGradient>
+    <linearGradient id="buildE" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#40916c"/>
+      <stop offset="100%" style="stop-color:#2d6a4f"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#skyE)"/>
+  <rect x="100" y="180" width="600" height="320" rx="4" fill="url(#buildE)" stroke="#52b788" stroke-width="2"/>
+  <rect x="100" y="180" width="600" height="20" rx="4" fill="#52b788"/>
+  <rect x="140" y="220" width="60" height="80" rx="2" fill="#1b4332" stroke="#52b788" stroke-width="1"/>
+  <rect x="220" y="220" width="60" height="80" rx="2" fill="#1b4332" stroke="#52b788" stroke-width="1"/>
+  <rect x="300" y="220" width="60" height="80" rx="2" fill="#1b4332" stroke="#52b788" stroke-width="1"/>
+  <rect x="380" y="220" width="60" height="80" rx="2" fill="#1b4332" stroke="#52b788" stroke-width="1"/>
+  <rect x="460" y="220" width="60" height="80" rx="2" fill="#1b4332" stroke="#52b788" stroke-width="1"/>
+  <rect x="540" y="220" width="60" height="80" rx="2" fill="#1b4332" stroke="#52b788" stroke-width="1"/>
+  <rect x="140" y="320" width="60" height="80" rx="2" fill="#1b4332" stroke="#52b788" stroke-width="1"/>
+  <rect x="220" y="320" width="60" height="80" rx="2" fill="#1b4332" stroke="#52b788" stroke-width="1"/>
+  <rect x="300" y="320" width="60" height="80" rx="2" fill="#1b4332" stroke="#52b788" stroke-width="1"/>
+  <rect x="380" y="320" width="60" height="80" rx="2" fill="#1b4332" stroke="#52b788" stroke-width="1"/>
+  <rect x="460" y="320" width="60" height="80" rx="2" fill="#1b4332" stroke="#52b788" stroke-width="1"/>
+  <rect x="540" y="320" width="60" height="80" rx="2" fill="#1b4332" stroke="#52b788" stroke-width="1"/>
+  <text x="400" y="175" text-anchor="middle" fill="#CCFFF8" font-size="18" font-weight="bold" font-family="Arial">Bloque E</text>
+</svg>
