@@ -21,6 +21,9 @@ class EstadoJuego extends ChangeNotifier {
   /// {'estudio': 3, 'descanso': 2, 'trabajo_grupal': 1}).
   final Map<String, int> tiempoAsignadoPorActividad = {};
 
+  /// Getter compatible con ReflexionEtapa (US-11): horas asignadas por actividad.
+  Map<String, int> get tiempoPorActividad => tiempoAsignadoPorActividad;
+
   void registrarTiempo(String actividad, int horas) {
     tiempoAsignadoPorActividad[actividad] =
         (tiempoAsignadoPorActividad[actividad] ?? 0) + horas;

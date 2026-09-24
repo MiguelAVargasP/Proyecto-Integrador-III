@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 import '../../core/contenido_escena.dart';
 import '../../core/estado_juego.dart';
 import '../../features/mapa_navegacion/state/estado_mapa.dart';
+import '../../features/eventos/evento_imprevisto.dart';
+import '../../features/reflexion/reflexion_etapa.dart';
 
 /// Contenido jugable para la FASE 2 del ciclo estudiantil (US-05):
 /// "Primeras clases y adaptación al nuevo horario".
@@ -31,6 +34,7 @@ class _PrimerasClasesScreen extends StatefulWidget {
 
 class _PrimerasClasesScreenState extends State<_PrimerasClasesScreen> {
   int _indiceLinea = 0;
+  bool _mostrarReflexion = false;
 
   final List<_Linea> _lineas = [
     _Linea(
@@ -47,7 +51,7 @@ class _PrimerasClasesScreenState extends State<_PrimerasClasesScreen> {
       opciones: [
         _Opcion(
           texto: 'Asistir a todas las clases y tomar notas detalladas',
-          descripcion: 'Aumenta tu preparacion pero puede generar mas estrés por la carga.',
+          descripcion: 'Aumenta tu preparacion pero puede generar mas estres por la carga.',
           efectoEstres: 5,
           efectoTiempo: {'Clases y seminarios': 3},
         ),
@@ -63,6 +67,18 @@ class _PrimerasClasesScreenState extends State<_PrimerasClasesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (_mostrarReflexion) {
+      return ReflexionEtapa(
+        nombreEtapa: 'Primeras clases y adaptacion al nuevo horario',
+        nivelEstres: estadoJuego.nivelEstres,
+        tiempoPorActividad: estadoJuego.tiempoPorActividad,
+        onContinuar: () {
+          setState(() => _mostrarReflexion = false);
+          widget.onCompletada();
+        },
+      );
+    }
+
     if (_indiceLinea >= _lineas.length) {
       _completar();
       return const Scaffold(
@@ -167,23 +183,39 @@ class _PrimerasClasesScreenState extends State<_PrimerasClasesScreen> {
   }
 
   void _completar() {
-  estadoJuego.completarEtapa();
-  estadoJuego.otorgarInsignia('FASE_2');
-  estadoMapa.completarEtapa('FASE_2');
-  widget.onCompletada();
-  }
-  }
+    // US-11: Momento de reflexion antes de completar
+    // Registra la etapa
+    estadoJuego.completarEtapa();
+    estadoJuego.otorgarInsignia('FASE_2');
+    estadoMapa.completarEtapa('FASE_2');
 
-  class _Linea {
+    // US-07: Evento imprevisto aleatorio (opcional)
+    final random = Random();
+    final evento = EventoImprevisto.aleatorio(random);
+    final deltaEstres = evento.aplicar(false);
+    if (deltaEstres > 0) {
+      estadoJuego.ajustarEstres(deltaEstres);
+      estadoJuego.registrarDecision(
+          'Evento imprevisto: ${evento.titulo} (+$deltaEstres estres)');
+    }
+
+    // Mostrar reflexión (US-11)
+    setState(() {
+      _mostrarReflexion = true;
+    });
+  }
+}
+
+class _Linea {
   final String texto;
   final String hablante;
   final List<_Opcion> opciones;
   _Linea({
-  required this.texto,
-  this.hablante = '',
-  this.opciones = const [],
+    required this.texto,
+    this.hablante = '',
+    this.opciones = const [],
   });
-  }
+}
 
 class _Opcion {
   final String texto;

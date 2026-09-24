@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 import '../../core/contenido_escena.dart';
 import '../../core/estado_juego.dart';
 import '../../features/mapa_navegacion/state/estado_mapa.dart';
+import '../../features/eventos/evento_imprevisto.dart';
+import '../../features/reflexion/reflexion_etapa.dart';
 
 /// Contenido jugable para la FASE 3 del ciclo estudiantil (US-05):
 /// "Estudio independiente y preparacion para el parcial".
@@ -13,6 +16,7 @@ import '../../features/mapa_navegacion/state/estado_mapa.dart';
 /// 1. Dialogo sobre la proximidad del parcial y la necesidad de estudiar.
 /// 2. Eleccion de como distribuir el tiempo de estudio.
 /// 3. Consecuencia sobre el nivel de preparacion y estrés.
+/// 4. Momento de reflexion (US-11) y posible evento imprevisto (US-07).
 class EstudioIndependienteContenido implements ContenidoEscena {
   @override
   Widget construir(BuildContext context, VoidCallback onCompletada) {
@@ -32,10 +36,11 @@ class _EstudioIndependienteScreen extends StatefulWidget {
 class _EstudioIndependienteScreenState
     extends State<_EstudioIndependienteScreen> {
   int _indiceLinea = 0;
+  bool _mostrarReflexion = false;
 
   final List<_Linea> _lineas = [
     _Linea(
-      texto: 'El parcial se acerca y tu nivel de estrés aumenta. Necesitas decidir como prepararte.',
+      texto: 'El parcial se acerca y tu nivel de estres aumenta. Necesitas decidir como prepararte.',
       hablante: 'Narrador',
     ),
     _Linea(
@@ -63,7 +68,7 @@ class _EstudioIndependienteScreenState
       ],
     ),
     _Linea(
-      texto: 'Tras horas de estudio, sientes que estás listo para el parcial. El estrés disminuye y tu confianza aumenta.',
+      texto: 'Tras horas de estudio, sientes que estás listo para el parcial. El estres disminuye y tu confianza aumenta.',
       hablante: 'Narrador',
       esFinal: true,
     ),
@@ -71,6 +76,18 @@ class _EstudioIndependienteScreenState
 
   @override
   Widget build(BuildContext context) {
+    if (_mostrarReflexion) {
+      return ReflexionEtapa(
+        nombreEtapa: 'Estudio independiente y preparacion para el parcial',
+        nivelEstres: estadoJuego.nivelEstres,
+        tiempoPorActividad: estadoJuego.tiempoPorActividad,
+        onContinuar: () {
+          setState(() => _mostrarReflexion = false);
+          widget.onCompletada();
+        },
+      );
+    }
+
     if (_indiceLinea >= _lineas.length) {
       _completar();
       return const Scaffold(
@@ -172,25 +189,40 @@ class _EstudioIndependienteScreenState
   }
 
   void _completar() {
-  estadoJuego.completarEtapa();
-  estadoJuego.otorgarInsignia('FASE_3');
-  estadoMapa.completarEtapa('FASE_3');
-  widget.onCompletada();
-  }
-  }
+    // US-11: Momento de reflexion antes de completar
+    estadoJuego.completarEtapa();
+    estadoJuego.otorgarInsignia('FASE_3');
+    estadoMapa.completarEtapa('FASE_3');
 
-  class _Linea {
+    // US-07: Evento imprevisto aleatorio (opcional)
+    final random = Random();
+    final evento = EventoImprevisto.aleatorio(random);
+    final deltaEstres = evento.aplicar(false);
+    if (deltaEstres > 0) {
+      estadoJuego.ajustarEstres(deltaEstres);
+      estadoJuego.registrarDecision(
+          'Evento imprevisto: ${evento.titulo} (+$deltaEstres estres)');
+    }
+
+    // Mostrar reflexión (US-11)
+    setState(() {
+      _mostrarReflexion = true;
+    });
+  }
+}
+
+class _Linea {
   final String texto;
   final String hablante;
   final List<_Opcion> opciones;
   final bool esFinal;
   _Linea({
-  required this.texto,
-  this.hablante = '',
-  this.opciones = const [],
-  this.esFinal = false,
+    required this.texto,
+    this.hablante = '',
+    this.opciones = const [],
+    this.esFinal = false,
   });
-  }
+}
 
 class _Opcion {
   final String texto;
