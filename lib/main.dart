@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'features/menu_principal/menu_principal_screen.dart';
+import 'core/estado_juego.dart';
+import 'features/mapa_navegacion/state/estado_mapa.dart';
 import 'features/mapa_navegacion/screens/mapa_campus_screen.dart';
 import 'registro_inicial.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await estadoJuego.cargar();
+  await estadoMapa.cargar();
   registrarContenidoDeEscenas();
-
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-
   runApp(const OrientacionUpbApp());
 }
 

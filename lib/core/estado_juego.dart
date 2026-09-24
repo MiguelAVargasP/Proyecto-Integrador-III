@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /// Estado global del progreso del jugador dentro del recorrido (distinto
 /// de `EstadoMapa`, que solo sabe de navegación). Reúne los datos que las
@@ -9,6 +11,8 @@ import 'package:flutter/foundation.dart';
 /// no adelantarse a la decisión de gestión de estado del paso de
 /// arquitectura. Envuélvelo con Provider/Riverpod cuando se decida.
 class EstadoJuego extends ChangeNotifier {
+  static const _clavePartida = 'partida_juego';
+
   // --- RF-06 / US-06: gestión del tiempo ---
   /// Horas disponibles para distribuir en la etapa actual.
   int tiempoDisponibleHoras = 0;
@@ -89,6 +93,79 @@ class EstadoJuego extends ChangeNotifier {
     insigniasObtenidas.clear();
     decisionesTomadas.clear();
     notifyListeners();
+  }
+
+  // --- US-20: guardado, reanudación y gestión de partidas ---
+
+  /// Serializa el estado actual a JSON para guardarlo persistentemente.
+  Map<String, dynamic> toJson() => {
+        'nivelEstres': nivelEstres,
+        'tiempoDisponibleHoras': tiempoDisponibleHoras,
+        'tiempoAsignadoPorActividad': tiempoAsignadoPorActividad,
+        'decisionesTomadas': decisionesTomadas,
+        'insigniasObtenidas': insigniasObtenidas.toList(),
+        'etapasCompletadas': etapasCompletadas,
+      };
+
+  /// Deserializa desde JSON y reinicia el estado actual con esos datos.
+  void fromJson(Map<String, dynamic> json) {
+    nivelEstres = json['nivelEstres'] as int? ?? 0;
+    tiempoDisponibleHoras = json['tiempoDisponibleHoras'] as int? ?? 0;
+    etapasCompletadas = json['etapasCompletadas'] as int? ?? 0;
+    final tiempoJson = json['tiempoAsignadoPorActividad'] as Map<String, dynamic>?;
+    if (tiempoJson != null) {
+      tiempoAsignadoPorActividad.clear();
+      tiempoJson.forEach((k, v) {
+        tiempoAsignadoPorActividad[k] = v as int;
+      });
+    }
+    final decJson = json['decisionesTomadas'] as List<dynamic>?;
+    if (decJson != null) {
+      decisionesTomadas.clear();
+      decisionesTomadas.addAll(decJson.cast<String>());
+    }
+    final insJson = json['insigniasObtenidas'] as List<dynamic>?;
+    if (insJson != null) {
+      insigniasObtenidas.clear();
+      insigniasObtenidas.addAll(insJson.cast<String>());
+    }
+    notifyListeners();
+  }
+
+  /// Guarda el estado actual en `shared_preferences` (disk).
+  Future<bool> guardar() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final json = jsonEncode(toJson());
+      return await prefs.setString(_clavePartida, json);
+    } catch (_) {
+      return false;
+    }
+  }
+
+  /// Carga el estado guardado desde `shared_preferences` (disk).
+  /// Retorna `true` si existía una partida guardada y se cargó.
+  Future<bool> cargar() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final jsonStr = prefs.getString(_clavePartida);
+      if (jsonStr == null) return false;
+      final json = jsonDecode(jsonStr) as Map<String, dynamic>;
+      fromJson(json);
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  /// Elimina el guardado persistente (reiniciar limpio entre sesiones).
+  Future<bool> borrarGuardado() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      return await prefs.remove(_clavePartida);
+    } catch (_) {
+      return false;
+    }
   }
 }
 

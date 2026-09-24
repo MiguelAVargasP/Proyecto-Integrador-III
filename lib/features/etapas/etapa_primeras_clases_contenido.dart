@@ -168,6 +168,7 @@ class _PrimerasClasesScreenState extends State<_PrimerasClasesScreen> {
 
   void _completar() {
   estadoJuego.completarEtapa();
+  estadoJuego.otorgarInsignia('FASE_2');
   estadoMapa.completarEtapa('FASE_2');
   widget.onCompletada();
   }

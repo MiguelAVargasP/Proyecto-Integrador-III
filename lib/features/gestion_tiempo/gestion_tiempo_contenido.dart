@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../core/contenido_escena.dart';
 import '../../core/estado_juego.dart';
+import 'tutorial_gestion_tiempo.dart';
 
 /// Implementacion de US-06: Gestion del tiempo del jugador.
 ///
@@ -16,7 +17,15 @@ import '../../core/estado_juego.dart';
 class GestionTiempoContenido implements ContenidoEscena {
   @override
   Widget construir(BuildContext context, VoidCallback onCompletada) {
-    return _GestionTiempoScreen(onCompletada: onCompletada);
+    return TutorialGestionTiempo(
+      onSalir: () {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (_) => _GestionTiempoScreen(onCompletada: onCompletada),
+          ),
+        );
+      },
+    );
   }
 }
 

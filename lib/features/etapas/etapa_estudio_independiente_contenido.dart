@@ -173,6 +173,7 @@ class _EstudioIndependienteScreenState
 
   void _completar() {
   estadoJuego.completarEtapa();
+  estadoJuego.otorgarInsignia('FASE_3');
   estadoMapa.completarEtapa('FASE_3');
   widget.onCompletada();
   }

@@ -58,8 +58,9 @@ class _ParcialIntro extends StatelessWidget {
                     builder: (_) => const ParcialCombateScreen(),
                   ),
                 );
-                onCompletada();
+                estadoJuego.otorgarInsignia('D');
                 estadoMapa.completarEtapa('D');
+                onCompletada();
               },
             ),
           ],
