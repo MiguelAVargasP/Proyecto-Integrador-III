@@ -98,6 +98,30 @@ class _GestionTiempoScreenState extends State<_GestionTiempoScreen> {
       estadoJuego.registrarTiempo(entry.key, entry.value);
     }
     estadoJuego.completarEtapa();
+    // US-13: retroalimentacion inmediata visual al confirmar asignacion
+    final prevEstres = estadoJuego.nivelEstres;
+    // Calcula el delta de estres que genero esta decision
+    int deltaTotal = 0;
+    for (final entry in widget.actividades.entries) {
+      final (_, deltaEstres) = entry.value;
+      final horas = _asignaciones[entry.key] ?? 0;
+      deltaTotal += deltaEstres * horas;
+    }
+    // Aplica el delta al mostrar feedback (el estado ya fue registrado)
+    final nuevoEstres = (prevEstres + deltaTotal).clamp(0, 100);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Distribucion confirmada: estrés ${prevEstres} → ${nuevoEstres}',
+        ),
+        backgroundColor: nuevoEstres > 60
+            ? Colors.redAccent
+            : nuevoEstres > 30
+                ? Colors.amberAccent
+                : Colors.greenAccent,
+        duration: const Duration(seconds: 3),
+      ),
+    );
     widget.onCompletada();
   }
 
@@ -116,7 +140,7 @@ class _GestionTiempoScreenState extends State<_GestionTiempoScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Card(
-              color: Colors.grey[900],
+              color: const Color(0xFF1A1A2E),
               child: Padding(
                 padding: const EdgeInsets.all(12),
                 child: Column(
