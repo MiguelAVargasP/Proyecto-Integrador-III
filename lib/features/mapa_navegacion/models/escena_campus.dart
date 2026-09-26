@@ -57,6 +57,16 @@ const List<EscenaCampus> escenasCampus = [
   ),
   // Etapas del ciclo estudiantil (US-05): hitos del recorrido, no edificios
   // físicos — aparecen en el mapa como marcadores de progreso.
+  //
+  // GESTION (US-06) va primero en el orden narrativo: el jugador reparte
+  // su tiempo antes de vivir las primeras clases y el estudio
+  // independiente. Usa la misma clave 'GESTION' que ya tenía registrada
+  // `registro_inicial.dart` — no hizo falta tocar ese archivo.
+  EscenaCampus(
+    id: 'GESTION',
+    nombre: 'Gestión del tiempo',
+    posicionRelativa: Offset(0.20, 0.40),
+  ),
   EscenaCampus(
     id: 'FASE_2',
     nombre: 'Primeras clases',

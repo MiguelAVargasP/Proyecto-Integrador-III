@@ -4,6 +4,7 @@ import '../models/escena_campus.dart';
 import '../state/estado_mapa.dart';
 import '../widgets/hotspot_escena.dart';
 import 'escena_screen.dart';
+import '../../menu_principal/menu_principal_screen.dart';
 
 /// RF-01: mapa ilustrado del campus como punto de entrada visual a las
 /// escenas del juego. Esta es la pantalla de inicio del recorrido jugable.
@@ -31,10 +32,23 @@ class _MapaCampusScreenState extends State<MapaCampusScreen> {
 
   void _onEstadoCambiado() => setState(() {});
 
+  /// Abre el menú principal (progreso, resultados, decisiones, reiniciar
+  /// y gestión del tiempo) — antes de esto, esas 5 pantallas existían en
+  /// el código pero no había forma de llegar a ninguna desde el juego.
+  void _abrirMenuPrincipal() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => MenuPrincipalScreen(
+          onVolverAlMapa: () => Navigator.of(context).pop(),
+        ),
+      ),
+    );
+  }
+
   /// Indica si una escena es una etapa del ciclo estudiantil (US-05) que
   /// puede mostrarse como completada en el marcador del mapa.
   bool _esEtapaCompletada(EscenaCampus escena) {
-    if (escena.id == 'FASE_2' || escena.id == 'FASE_3' || escena.id == 'D') {
+    if (escena.id == 'GESTION' || escena.id == 'FASE_2' || escena.id == 'FASE_3' || escena.id == 'D') {
       return estadoMapa.etapaCompletada(escena.id);
     }
     return false;
@@ -103,6 +117,17 @@ class _MapaCampusScreenState extends State<MapaCampusScreen> {
                       onTap: () => _irAEscena(escena),
                     ),
                   ),
+                Positioned(
+                  top: 16,
+                  right: 16,
+                  child: SafeArea(
+                    child: IconButton(
+                      onPressed: _abrirMenuPrincipal,
+                      icon: const Icon(Icons.menu, color: Colors.white),
+                      style: IconButton.styleFrom(backgroundColor: Colors.black45),
+                    ),
+                  ),
+                ),
               ],
             ),
           );

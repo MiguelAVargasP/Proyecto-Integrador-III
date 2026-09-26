@@ -24,13 +24,16 @@ const Map<String, List<double>> _crouchingStance = {
 };
 
 /// Aclara/oscurece un color (factor 1.0 lo deja igual). Porte de `_shade`.
+///
+/// Usa los componentes nuevos de Color (`.a/.r/.g/.b`, doubles 0.0-1.0) en
+/// vez de los enteros 0-255 (`color.red` etc.), que quedaron obsoletos.
 Color _shade(Color color, double factor) {
-  int clamp(num v) => v < 0 ? 0 : (v > 255 ? 255 : v.round());
-  return Color.fromARGB(
-    color.alpha,
-    clamp(color.red * factor),
-    clamp(color.green * factor),
-    clamp(color.blue * factor),
+  double clamp01(double v) => v < 0.0 ? 0.0 : (v > 1.0 ? 1.0 : v);
+  return Color.from(
+    alpha: color.a,
+    red: clamp01(color.r * factor),
+    green: clamp01(color.g * factor),
+    blue: clamp01(color.b * factor),
   );
 }
 

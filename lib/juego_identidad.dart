@@ -27,7 +27,7 @@ class JuegoIdentidad {
       width: size,
       height: size,
       decoration: BoxDecoration(
-        color: acento1.withOpacity(0.15),
+        color: acento1.withValues(alpha: 0.15),
         border: Border.all(color: acento1, width: 2),
         borderRadius: BorderRadius.circular(size / 2),
       ),

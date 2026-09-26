@@ -264,7 +264,7 @@ class _GestionTiempoScreenState extends State<_GestionTiempoScreen> {
                 child: Text(
                   'Asigna todas las horas para continuar.',
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.white.withOpacity(0.5), fontSize: 12),
+                  style: TextStyle(color: Colors.white.withValues(alpha: 0.5), fontSize: 12),
                 ),
               ),
           ],
@@ -285,7 +285,7 @@ class _GestionTiempoScreenState extends State<_GestionTiempoScreen> {
         width: 36,
         height: 36,
         decoration: BoxDecoration(
-          color: (onPressed != null ? color : Colors.grey[800])!.withOpacity(0.2),
+          color: (onPressed != null ? color : Colors.grey[800])!.withValues(alpha: 0.2),
           borderRadius: BorderRadius.circular(18),
         ),
         child: Icon(

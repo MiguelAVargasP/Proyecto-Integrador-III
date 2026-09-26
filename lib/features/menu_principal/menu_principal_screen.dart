@@ -192,7 +192,7 @@ class MenuPrincipalScreen extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: color.withOpacity(0.2),
+                  color: color.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Icon(icono, color: color, size: 24),
@@ -256,6 +256,7 @@ class MenuPrincipalScreen extends StatelessWidget {
           tiempoAsignadoPorActividad: Map.of(estadoJuego.tiempoAsignadoPorActividad),
           onReiniciar: () {
             Navigator.of(context).pop();
+            estadoJuego.resetear();
           },
           onVolverAlMenu: () => Navigator.of(context).pop(),
         ),

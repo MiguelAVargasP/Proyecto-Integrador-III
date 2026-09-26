@@ -46,7 +46,7 @@ class HotspotEscena extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.greenAccent.withOpacity(0.3),
+                    color: Colors.greenAccent.withValues(alpha: 0.3),
                     border: Border.all(color: Colors.greenAccent, width: 2),
                   ),
                 )
@@ -58,7 +58,7 @@ class HotspotEscena extends StatelessWidget {
                     border: Border.all(color: Colors.white, width: 3),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.4),
+                        color: Colors.black.withValues(alpha: 0.4),
                         blurRadius: 6,
                       ),
                     ],

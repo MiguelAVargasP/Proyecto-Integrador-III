@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../core/contenido_escena.dart';
 import '../../core/estado_juego.dart';
+import '../mapa_navegacion/state/estado_mapa.dart';
 import 'tutorial_gestion_tiempo.dart';
 
 /// Implementacion de US-06: Gestion del tiempo del jugador.
@@ -87,6 +88,7 @@ class _GestionTiempoScreenState extends State<_GestionTiempoScreen>
       }
     }
     estadoJuego.completarEtapa();
+    estadoMapa.completarEtapa('GESTION');
     widget.onCompletada();
   }
 
@@ -198,7 +200,7 @@ class _GestionTiempoScreenState extends State<_GestionTiempoScreen>
               Text(
                 'Distribuye todas las horas disponibles para continuar.',
                 style:
-                    TextStyle(color: Colors.white.withOpacity(0.5), fontSize: 12),
+                    TextStyle(color: Colors.white.withValues(alpha: 0.5), fontSize: 12),
               ),
           ],
         ),

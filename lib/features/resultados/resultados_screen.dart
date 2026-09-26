@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 /// Pantalla de resultados finales (US-15).
 ///
-/// Muestra un resumen del recorrido del jugador: estr&eacute;s final, decisiones
-/// m&aacute;s relevantes, insignias obtenidas y resultado general.
+/// Muestra un resumen del recorrido del jugador: estrés final, decisiones
+/// más relevantes, insignias obtenidas y resultado general.
 ///
 /// Debe mostrarse al finalizar el recorrido (todas las etapas completadas
 /// o cuando el jugador decide terminar).
@@ -31,7 +31,7 @@ class ResultadosScreen extends StatelessWidget {
 
   String get _resultadoFinal {
     if (nivelEstres < 30) return 'Bien preparado';
-    if (nivelEstres < 70) return 'Preparaci&oacute;n irregular';
+    if (nivelEstres < 70) return 'Preparación irregular';
     return 'Poco preparado';
   }
 
@@ -59,7 +59,7 @@ class ResultadosScreen extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                'Recorrido UPB &mdash; Orientaci&oacute;n Universitaria',
+                'Recorrido UPB — Orientación Universitaria',
                 style: const TextStyle(color: Colors.white70, fontSize: 14),
               ),
               const SizedBox(height: 24),
@@ -67,7 +67,7 @@ class ResultadosScreen extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: _colorResultado.withOpacity(0.2),
+                  color: _colorResultado.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(color: _colorResultado, width: 2),
                 ),
@@ -120,7 +120,7 @@ class ResultadosScreen extends StatelessWidget {
                 }),
                 if (decisionesTomadas.length > 5)
                   Text(
-                    '... y ${decisionesTomadas.length - 5} m&aacute;s',
+                    '... y ${decisionesTomadas.length - 5} más',
                     style: const TextStyle(color: Colors.white38, fontSize: 12),
                   ),
                 const SizedBox(height: 16),
@@ -185,10 +185,10 @@ class ResultadosScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _tituloSeccion('Tus estad&iacute;sticas'),
+        _tituloSeccion('Tus estadísticas'),
         const SizedBox(height: 8),
         _filaStat('Etapas completadas', '$etapasCompletadas / $totalEtapas'),
-        _filaStat('Nivel de estr&eacute;s', '$nivelEstres / 100'),
+        _filaStat('Nivel de estrés', '$nivelEstres / 100'),
         _filaStat('Horas de estudio', '$estudioHoras h'),
         _filaStat('Decisiones tomadas', '${decisionesTomadas.length}'),
         _filaStat('Insignias', '${insigniasObtenidas.length}'),
