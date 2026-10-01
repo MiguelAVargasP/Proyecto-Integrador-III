@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../core/estado_juego.dart';
 
 /// Pantalla de resultados finales (US-15).
 ///
@@ -16,6 +17,7 @@ class ResultadosScreen extends StatelessWidget {
   final Map<String, int> tiempoAsignadoPorActividad;
   final VoidCallback onReiniciar;
   final VoidCallback onVolverAlMenu;
+  final String? resultadoFinal;
 
   const ResultadosScreen({
     super.key,
@@ -27,18 +29,22 @@ class ResultadosScreen extends StatelessWidget {
     required this.tiempoAsignadoPorActividad,
     required this.onReiniciar,
     required this.onVolverAlMenu,
+    this.resultadoFinal,
   });
 
-  String get _resultadoFinal {
-    if (nivelEstres < 30) return 'Bien preparado';
-    if (nivelEstres < 70) return 'Preparación irregular';
-    return 'Poco preparado';
-  }
+  String get _resultadoFinal =>
+      resultadoFinal ?? estadoJuego.calcularResultadoFinal();
 
   Color get _colorResultado {
-    if (nivelEstres < 30) return const Color(0xFF4CAF50);
-    if (nivelEstres < 70) return const Color(0xFFFF9800);
-    return const Color(0xFFF44336);
+    switch (_resultadoFinal) {
+      case 'Bien preparado':
+        return const Color(0xFF4CAF50);
+      case 'Preparación irregular':
+        return const Color(0xFFFF9800);
+      case 'Poco preparado':
+      default:
+        return const Color(0xFFF44336);
+    }
   }
 
   @override
@@ -58,9 +64,9 @@ class ResultadosScreen extends StatelessWidget {
                 style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 8),
-              Text(
+              const Text(
                 'Recorrido UPB — Orientación Universitaria',
-                style: const TextStyle(color: Colors.white70, fontSize: 14),
+                style: TextStyle(color: Colors.white70, fontSize: 14),
               ),
               const SizedBox(height: 24),
 

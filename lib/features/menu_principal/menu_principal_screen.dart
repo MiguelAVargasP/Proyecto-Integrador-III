@@ -254,6 +254,7 @@ class MenuPrincipalScreen extends StatelessWidget {
           decisionesTomadas: List.of(estadoJuego.decisionesTomadas),
           insigniasObtenidas: Set.of(estadoJuego.insigniasObtenidas),
           tiempoAsignadoPorActividad: Map.of(estadoJuego.tiempoAsignadoPorActividad),
+          resultadoFinal: estadoJuego.calcularResultadoFinal(),
           onReiniciar: () {
             Navigator.of(context).pop();
             estadoJuego.resetear();

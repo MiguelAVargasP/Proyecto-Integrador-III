@@ -186,7 +186,7 @@ class _PrimerasClasesScreenState extends State<_PrimerasClasesScreen> {
     // US-11: Momento de reflexion antes de completar
     // Registra la etapa
     estadoJuego.completarEtapa();
-    estadoJuego.otorgarInsignia('FASE_2');
+    estadoJuego.otorgarInsignia('FASE_2', context);
     estadoMapa.completarEtapa('FASE_2');
 
     // US-07: Evento imprevisto aleatorio (opcional)

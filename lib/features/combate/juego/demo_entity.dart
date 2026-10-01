@@ -16,8 +16,7 @@ class DemoEntity extends Entity {
 
   final Color color;
 
-  DemoEntity({required double x, required double y, required this.color})
-      : super(x: x, y: y) {
+  DemoEntity({required super.x, required super.y, required this.color}) {
     addComponent(_MovimientoDemo());
     addComponent(_DibujoDemo());
   }

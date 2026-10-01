@@ -112,7 +112,7 @@ class _GestionTiempoScreenState extends State<_GestionTiempoScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          'Distribucion confirmada: estrés ${prevEstres} → ${nuevoEstres}',
+          'Distribucion confirmada: estrés $prevEstres → $nuevoEstres',
         ),
         backgroundColor: nuevoEstres > 60
             ? Colors.redAccent
@@ -153,7 +153,7 @@ class _GestionTiempoScreenState extends State<_GestionTiempoScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.timer, color: Colors.amberAccent, size: 24),
+                        const Icon(Icons.timer, color: Colors.amberAccent, size: 24),
                         const SizedBox(width: 8),
                         Text(
                           '$_horasRestantes / ${widget.horasTotales}',
@@ -164,7 +164,7 @@ class _GestionTiempoScreenState extends State<_GestionTiempoScreen> {
                           ),
                         ),
                         const SizedBox(width: 8),
-                        Icon(Icons.timer_off, color: Colors.white24, size: 24),
+                        const Icon(Icons.timer_off, color: Colors.white24, size: 24),
                       ],
                     ),
                   ],

@@ -191,7 +191,7 @@ class _EstudioIndependienteScreenState
   void _completar() {
     // US-11: Momento de reflexion antes de completar
     estadoJuego.completarEtapa();
-    estadoJuego.otorgarInsignia('FASE_3');
+    estadoJuego.otorgarInsignia('FASE_3', context);
     estadoMapa.completarEtapa('FASE_3');
 
     // US-07: Evento imprevisto aleatorio (opcional)

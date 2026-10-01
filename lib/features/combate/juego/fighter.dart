@@ -98,18 +98,18 @@ class Fighter extends CombatEntity {
   final SuperManager superManager = SuperManager();
 
   Fighter({
-    required double x,
-    required double y,
+    required super.x,
+    required super.y,
     required this.controller,
     Color color = const Color(0xFF78A0C8), // (120,160,200)
     int facingInicial = 1,
-    double maxHealth = 100.0,
+    super.maxHealth,
     this.name = 'Fighter',
   })  : baseColor = color,
         currentColor = color,
-        facing = facingInicial >= 0 ? 1 : -1,
-        super(x: x, y: y, maxHealth: maxHealth) {
-    physicsBody = addComponent(PhysicsBody(width: 24.0, height: 32.0)) as PhysicsBody;
+        facing = facingInicial >= 0 ? 1 : -1 {
+    physicsBody =
+        addComponent(PhysicsBody(width: 24.0, height: 32.0)) as PhysicsBody;
 
     bodyHurtbox = addHurtbox(Hurtbox(
       width: _standingStance['body']![2],
@@ -137,13 +137,21 @@ class Fighter extends CombatEntity {
     attackHitbox.disarm();
 
     attacks[estados.attackHigh] = {
-      'startup': 0.06, 'active': 0.05, 'recovery': 0.10,
-      'damage': 10.0, 'hitstun': 0.25, 'knockback_x': 40.0,
+      'startup': 0.06,
+      'active': 0.05,
+      'recovery': 0.10,
+      'damage': 10.0,
+      'hitstun': 0.25,
+      'knockback_x': 40.0,
       'hbox': {'width': 20.0, 'height': 8.0, 'ox': 6.0, 'oy': -4.0},
     };
     attacks[estados.attackLow] = {
-      'startup': 0.07, 'active': 0.06, 'recovery': 0.12,
-      'damage': 8.0, 'hitstun': 0.22, 'knockback_x': 30.0,
+      'startup': 0.07,
+      'active': 0.06,
+      'recovery': 0.12,
+      'damage': 8.0,
+      'hitstun': 0.22,
+      'knockback_x': 30.0,
       'hbox': {'width': 22.0, 'height': 10.0, 'ox': 12.0, 'oy': 16.0},
     };
 
@@ -279,11 +287,13 @@ class Fighter extends CombatEntity {
       attackPhase = 'active';
       stateTime = 0.0;
       _armAttackHitbox();
-    } else if (attackPhase == 'active' && stateTime >= (data['active'] as double)) {
+    } else if (attackPhase == 'active' &&
+        stateTime >= (data['active'] as double)) {
       attackPhase = 'recovery';
       stateTime = 0.0;
       attackHitbox.disarm();
-    } else if (attackPhase == 'recovery' && stateTime >= (data['recovery'] as double)) {
+    } else if (attackPhase == 'recovery' &&
+        stateTime >= (data['recovery'] as double)) {
       attackHitbox.disarm();
       _changeState(estados.idle);
     }
@@ -294,7 +304,8 @@ class Fighter extends CombatEntity {
     final hbox = data['hbox'] as Map<String, dynamic>;
     attackHitbox.width = hbox['width'] as double;
     attackHitbox.height = hbox['height'] as double;
-    attackHitbox.setOffset(facing * (hbox['ox'] as double), hbox['oy'] as double);
+    attackHitbox.setOffset(
+        facing * (hbox['ox'] as double), hbox['oy'] as double);
     attackHitbox.applyData(
       damage: data['damage'] as double,
       hitstun: data['hitstun'] as double,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../core/estado_juego.dart';
 
 /// Pantalla de transparencia sobre decisiones de alto impacto (US-16).
 ///
@@ -51,9 +52,8 @@ class DecisionesScreen extends StatelessWidget {
               itemCount: decisionesTomadas.length,
               itemBuilder: (context, index) {
                 final decision = decisionesTomadas[index];
-                // Heurística simple: si la decisión contiene palabras clave,
-                // clasificarla como de alto impacto.
-                final esAltoImpacto = _esDecicionAltoImpacto(decision);
+                // Fuente de verdad única: estadoJuego.esDecisionAltoImpacto (US-16).
+                final esAltoImpacto = estadoJuego.esDecisionAltoImpacto(decision);
                 return Card(
                   color: esAltoImpacto ? Colors.grey[800] : Colors.grey[900],
                   child: Padding(
@@ -94,14 +94,5 @@ class DecisionesScreen extends StatelessWidget {
               },
             ),
     );
-  }
-
-  bool _esDecicionAltoImpacto(String decision) {
-    final palabrasClave = [
-      'parcial', 'examen', 'aprobar', 'reprobar', 'estrés',
-      'consecuencia', 'registro', 'impacto', 'alto',
-    ];
-    final lower = decision.toLowerCase();
-    return palabrasClave.any((p) => lower.contains(p));
   }
 }
