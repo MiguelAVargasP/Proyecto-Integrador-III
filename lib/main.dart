@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'core/estado_juego.dart';
 import 'features/mapa_navegacion/state/estado_mapa.dart';
-import 'features/mapa_navegacion/screens/mapa_campus_screen.dart';
-import 'features/menu_principal/menu_principal_screen.dart';
+import 'features/menu_inicio/menu_inicio_screen.dart';
 import 'registro_inicial.dart';
 
 final GlobalKey<ScaffoldMessengerState> rootScaffoldMessengerKey =
@@ -52,18 +51,12 @@ class OrientacionUpbApp extends StatelessWidget {
       title: 'Orientación UPB',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      // El menú principal es ahora la pantalla de entrada. `Builder` nos
-      // da un `context` que ya está debajo del `Navigator` de MaterialApp,
-      // necesario para poder EMPUJAR el mapa hacia adelante (no hay nada
-      // debajo todavía a donde "volver" — es la ruta raíz de la app).
+      // La puerta de entrada es ahora el menú de inicio (portada + botón que
+      // arranca el soundtrack y el flujo de 8 semanas). `MenuPrincipalScreen`
+      // (progreso/resultados/decisiones) sigue disponible desde el mapa. Se
+      // envuelve en `Builder` para tener un `context` debajo del Navigator.
       home: Builder(
-        builder: (context) => MenuPrincipalScreen(
-          onVolverAlMapa: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(builder: (_) => const MapaCampusScreen()),
-            );
-          },
-        ),
+        builder: (context) => MenuInicioScreen(),
       ),
     );
   }

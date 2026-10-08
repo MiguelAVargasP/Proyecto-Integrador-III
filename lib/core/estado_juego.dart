@@ -142,6 +142,53 @@ class EstadoJuego extends ChangeNotifier {
 
   double get progresoFraccional => etapasCompletadas / totalEtapas;
 
+  // --- Estructura de las 8 semanas (progresión del juego serio) ---
+  // Son campos NUEVOS e independientes de `etapasCompletadas`/`totalEtapas`
+  // (que miden el ciclo de 3 etapas). El recorrido narrativo se divide en 8
+  // semanas; este estado solo lleva la cuenta de esa progresión sin alterar
+  // la lógica ya construida de etapas.
+  static const int totalSemanas = 8;
+
+  /// Semana actual del recorrido narrativo (1..8). Empieza en 1.
+  int semanaActual = 1;
+
+  /// Semanas ya completadas (identificadas por su número, 1..8).
+  final Set<int> semanasCompletadas = {};
+
+  /// Id del nodo (bloque A..L o 'TEMPLO') actual dentro de la semana.
+  String? nodoActualId;
+
+  /// `true` una vez superado el evento del parcial (fin del recorrido).
+  bool parcialSuperado = false;
+
+  /// Porcentaje de progreso narrativo (0.0 a 1.0) sobre las 8 semanas.
+  double get progresoSemanasFraccional => semanasCompletadas.length / totalSemanas;
+
+  /// Marca una semana como completada y avanza `semanaActual` a la siguiente
+  /// si corresponde (sin pasarse de `totalSemanas`). Idempotente.
+  void completarSemana(int semana) {
+    if (semana < 1 || semana > totalSemanas) return;
+    semanasCompletadas.add(semana);
+    if (semanaActual == semana && semana < totalSemanas) {
+      semanaActual = semana + 1;
+    }
+    notifyListeners();
+  }
+
+  /// Indica si una semana está desbloqueada para jugar. La semana 1 siempre
+  /// lo está; la N requiere la N-1 completada (progresión encadenada).
+  bool semanaDesbloqueada(int semana) {
+    if (semana <= 1) return true;
+    return semanasCompletadas.contains(semana - 1);
+  }
+
+  /// Fija el nodo (blque) actual del recorrido.
+  void seleccionarNodo(String id) {
+    nodoActualId = id;
+    notifyListeners();
+  }
+
+
   // --- RF-15 / US-15: resultado final ---
   /// Calcula el resultado final del recorrido (US-15).
   ///
@@ -165,6 +212,11 @@ class EstadoJuego extends ChangeNotifier {
     etapasCompletadas = 0;
     insigniasObtenidas.clear();
     decisionesTomadas.clear();
+    // Reinicia también la progresión de las 8 semanas.
+    semanaActual = 1;
+    semanasCompletadas.clear();
+    nodoActualId = null;
+    parcialSuperado = false;
     notifyListeners();
   }
 
@@ -178,6 +230,10 @@ class EstadoJuego extends ChangeNotifier {
         'decisionesTomadas': decisionesTomadas,
         'insigniasObtenidas': insigniasObtenidas.toList(),
         'etapasCompletadas': etapasCompletadas,
+        'semanaActual': semanaActual,
+        'semanasCompletadas': semanasCompletadas.toList(),
+        'nodoActualId': nodoActualId,
+        'parcialSuperado': parcialSuperado,
       };
 
   /// Deserializa desde JSON y reinicia el estado actual con esos datos.
@@ -202,6 +258,16 @@ class EstadoJuego extends ChangeNotifier {
       insigniasObtenidas.clear();
       insigniasObtenidas.addAll(insJson.cast<String>());
     }
+    // Progresión de las 8 semanas. Se leen con defaults seguros para que una
+    // partida guardada ANTES de esta función siga cargando sin romperse.
+    semanaActual = (json['semanaActual'] as int?) ?? 1;
+    final semJson = json['semanasCompletadas'] as List<dynamic>?;
+    if (semJson != null) {
+      semanasCompletadas.clear();
+      semanasCompletadas.addAll(semJson.cast<int>());
+    }
+    nodoActualId = json['nodoActualId'] as String?;
+    parcialSuperado = json['parcialSuperado'] as bool? ?? false;
     notifyListeners();
   }
 

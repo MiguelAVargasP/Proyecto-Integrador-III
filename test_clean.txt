@@ -1,0 +1,144 @@
+00:00 +0: loading C:/Users/hellx/OneDrive/Documentos/Vida Universitaria/Codigos/Proyecto-Integrador-III/test/us10_insignias_test.dart                                                                  00:01 +0: loading C:/Users/hellx/OneDrive/Documentos/Vida Universitaria/Codigos/Proyecto-Integrador-III/test/us10_insignias_test.dart                                                                  00:02 +0: loading C:/Users/hellx/OneDrive/Documentos/Vida Universitaria/Codigos/Proyecto-Integrador-III/test/us10_insignias_test.dart                                                                  00:02 +0: C:/Users/hellx/OneDrive/Documentos/Vida ... US-10: Mapeo de nombres de insignias nombreInsignia retorna nombres descriptivos para cada hito                                                  00:02 +1: C:/Users/hellx/OneDrive/Documentos/Vida ... US-10: Mapeo de nombres de insignias nombreInsignia retorna nombres descriptivos para cada hito                                                  00:02 +1: C:/Users/hellx/OneDrive/Documentos/Vida ... US-10: Notificación visual al otorgar insignia con BuildContext Muestra SnackBar al otorgar insignia por primera vez                             00:02 +2: C:/Users/hellx/OneDrive/Documentos/Vida ... US-10: Notificación visual al otorgar insignia con BuildContext Muestra SnackBar al otorgar insignia por primera vez                             00:02 +3: C:/Users/hellx/OneDrive/Documentos/Vida ... US-10: Notificación visual al otorgar insignia con BuildContext Muestra SnackBar al otorgar insignia por primera vez                             00:02 +4: C:/Users/hellx/OneDrive/Documentos/Vida ... US-10: Notificación visual al otorgar insignia con BuildContext Muestra SnackBar al otorgar insignia por primera vez                             00:02 +5: C:/Users/hellx/OneDrive/Documentos/Vida ... US-10: Notificación visual al otorgar insignia con BuildContext Muestra SnackBar al otorgar insignia por primera vez                             00:03 +5: C:/Users/hellx/OneDrive/Documentos/Vida ... US-10: Notificación visual al otorgar insignia con BuildContext Muestra SnackBar al otorgar insignia por primera vez                             00:03 +6: C:/Users/hellx/OneDrive/Documentos/Vida ... US-15: ResultadosScreen visualiza resultado de EstadoJuego Muestra resultado delegado de estadoJuego y estadísticas                              00:03 +7: C:/Users/hellx/OneDrive/Documentos/Vida ... US-15: ResultadosScreen visualiza resultado de EstadoJuego Muestra resultado delegado de estadoJuego y estadísticas                              00:03 +8: C:/Users/hellx/OneDrive/Documentos/Vida ... US-15: ResultadosScreen visualiza resultado de EstadoJuego Muestra resultado delegado de estadoJuego y estadísticas                              00:03 +9: C:/Users/hellx/OneDrive/Documentos/Vida ... US-16: Detección y fuente única de alto impacto DecisionesScreen resalta decisiones de alto impacto usando EstadoJuego                           00:03 +10: C:/Users/hellx/OneDrive/Documentos/Vida ... US-16: Detección y fuente única de alto impacto DecisionesScreen resalta decisiones de alto impacto usando EstadoJuego                          00:03 +11: C:/Users/hellx/OneDrive/Documentos/Vida ... US-16: Detección y fuente única de alto impacto DecisionesScreen resalta decisiones de alto impacto usando EstadoJuego                          00:03 +12: C:/Users/hellx/OneDrive/Documentos/Vida Universitaria/Codigos/Proyecto-Integrador-III/test/widget_test.dart: OrientacionUpbApp arranca sin excepciones                                      00:03 +13: C:/Users/hellx/OneDrive/Documentos/Vida Universitaria/Codigos/Proyecto-Integrador-III/test/widget_test.dart: OrientacionUpbApp arranca sin excepciones                                      00:03 +14: C:/Users/hellx/OneDrive/Documentos/Vida ... US-16: Advertencia previa en CajaDialogo antes de confirmar Opción de alto impacto muestra advertencia y al cancelar no aplica cambios          00:03 +15: C:/Users/hellx/OneDrive/Documentos/Vida ... US-16: Advertencia previa en CajaDialogo antes de confirmar Opción de alto impacto muestra advertencia y al cancelar no aplica cambios          00:03 +16: C:/Users/hellx/OneDrive/Documentos/Vida Universitaria/Codigos/Proyecto-Integrador-III/test/widget_test.dart: MapaCampusScreen se construye sin excepciones                                  00:04 +16: C:/Users/hellx/OneDrive/Documentos/Vida Universitaria/Codigos/Proyecto-Integrador-III/test/widget_test.dart: MapaCampusScreen se construye sin excepciones                                  00:04 +17: C:/Users/hellx/OneDrive/Documentos/Vida Universitaria/Codigos/Proyecto-Integrador-III/test/widget_test.dart: MapaCampusScreen se construye sin excepciones                                  00:04 +17: C:/Users/hellx/OneDrive/Documentos/Vida Universitaria/Codigos/Proyecto-Integrador-III/test/widget_test.dart: MapaCampusScreen se construye sin excepciones                                  
+══╡ EXCEPTION CAUGHT BY IMAGE RESOURCE SERVICE ╞════════════════════════════════════════════════════
+The following assertion was thrown resolving an image codec:
+Unable to load asset: "assets/images/mapa_campus.png".
+The asset does not exist or has empty data.
+
+When the exception was thrown, this was the stack:
+#0      PlatformAssetBundle.load (package:flutter/src/services/asset_bundle.dart:340:7)
+#1      PlatformAssetBundle.loadBuffer (package:flutter/src/services/asset_bundle.dart:367:36)
+#2      AssetBundleImageProvider._loadAsync (package:flutter/src/painting/image_provider.dart:787:33)
+#3      AssetBundleImageProvider.loadImage (package:flutter/src/painting/image_provider.dart:747:14)
+#4      ImageProvider.resolveStreamForKey.<anonymous closure> (package:flutter/src/painting/image_provider.dart:550:39)
+#5      ImageCache.putIfAbsent (package:flutter/src/painting/image_cache.dart:368:22)
+#6      ImageProvider.resolveStreamForKey (package:flutter/src/painting/image_provider.dart:547:81)
+#7      ScrollAwareImageProvider.resolveStreamForKey (package:flutter/src/widgets/scroll_aware_image_provider.dart:105:19)
+#8      ImageProvider.resolve.<anonymous closure> (package:flutter/src/painting/image_provider.dart:383:9)
+#9      ImageProvider._createErrorHandlerAndKey.<anonymous closure> (package:flutter/src/painting/image_provider.dart:503:28)
+#10     SynchronousFuture.then (package:flutter/src/foundation/synchronous_future.dart:44:27)
+#11     ImageProvider._createErrorHandlerAndKey (package:flutter/src/painting/image_provider.dart:500:10)
+#12     ImageProvider.resolve (package:flutter/src/painting/image_provider.dart:380:5)
+#13     _ImageState._resolveImage (package:flutter/src/widgets/image.dart:1198:44)
+#14     _ImageState.didChangeDependencies (package:flutter/src/widgets/image.dart:1145:5)
+#15     StatefulElement._firstBuild (package:flutter/src/widgets/framework.dart:5981:11)
+#16     ComponentElement.mount (package:flutter/src/widgets/framework.dart:5806:5)
+...     Normal element mounting (7 frames)
+#23     Element.inflateWidget (package:flutter/src/widgets/framework.dart:4600:20)
+#24     MultiChildRenderObjectElement.inflateWidget (package:flutter/src/widgets/framework.dart:7277:36)
+#25     MultiChildRenderObjectElement.mount (package:flutter/src/widgets/framework.dart:7292:32)
+...     Normal element mounting (21 frames)
+#46     Element.inflateWidget (package:flutter/src/widgets/framework.dart:4600:20)
+#47     Element.updateChild (package:flutter/src/widgets/framework.dart:4072:18)
+#48     _LayoutBuilderElement._rebuildWithConstraints.updateChildCallback (package:flutter/src/widgets/layout_builder.dart:247:18)
+#49     BuildOwner.buildScope (package:flutter/src/widgets/framework.dart:3114:19)
+#50     _LayoutBuilderElement._rebuildWithConstraints (package:flutter/src/widgets/layout_builder.dart:270:12)
+#51     RenderAbstractLayoutBuilderMixin.layoutCallback (package:flutter/src/widgets/layout_builder.dart:333:38)
+#52     RenderObjectWithLayoutCallbackMixin.runLayoutCallback.<anonymous closure> (package:flutter/src/rendering/object.dart:4313:33)
+#53     RenderObject.invokeLayoutCallback.<anonymous closure> (package:flutter/src/rendering/object.dart:3042:17)
+#54     PipelineOwner._enableMutationsToDirtySubtrees (package:flutter/src/rendering/object.dart:1223:15)
+#55     RenderObject.invokeLayoutCallback (package:flutter/src/rendering/object.dart:3041:14)
+#56     RenderObjectWithLayoutCallbackMixin.runLayoutCallback (package:flutter/src/rendering/object.dart:4313:5)
+#57     _RenderLayoutBuilder.performLayout (package:flutter/src/widgets/layout_builder.dart:447:5)
+#58     RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#59     MultiChildLayoutDelegate.layoutChild (package:flutter/src/rendering/custom_layout.dart:180:12)
+#60     _ScaffoldLayout.performLayout (package:flutter/src/material/scaffold.dart:1113:7)
+#61     MultiChildLayoutDelegate._callPerformLayout (package:flutter/src/rendering/custom_layout.dart:246:7)
+#62     RenderCustomMultiChildLayoutBox.performLayout (package:flutter/src/rendering/custom_layout.dart:417:14)
+#63     RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#64     RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#65     RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#66     RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#67     _RenderCustomClip.performLayout (package:flutter/src/rendering/proxy_box.dart:1549:11)
+#68     RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#69     RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#70     RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#71     RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#72     RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#73     RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#74     RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#75     RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#76     RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#77     RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#78     RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#79     RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#80     RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#81     RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#82     RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#83     RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#84     RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#85     RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#86     RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#87     RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#88     RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#89     RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#90     RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#91     RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#92     RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#93     RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#94     RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#95     RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#96     RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#97     RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#98     RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#99     RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#100    RenderOffstage.performLayout (package:flutter/src/rendering/proxy_box.dart:3923:13)
+#101    RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#102    RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#103    RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#104    _RenderTheaterMixin.layoutChild (package:flutter/src/widgets/overlay.dart:1124:13)
+#105    _RenderTheater.performLayout (package:flutter/src/widgets/overlay.dart:1482:9)
+#106    RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#107    RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#108    RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#109    RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#110    RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#111    RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#112    RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#113    RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#114    RenderCustomPaint.performLayout (package:flutter/src/rendering/custom_paint.dart:574:11)
+#115    RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#116    RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#117    RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#118    RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#119    RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#120    RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#121    RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#122    RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#123    RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#124    RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#125    RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#126    RenderProxyBoxMixin.performLayout (package:flutter/src/rendering/proxy_box.dart:118:18)
+#127    RenderObject.layout (package:flutter/src/rendering/object.dart:2923:7)
+#128    RenderView.performLayout (package:flutter/src/rendering/view.dart:292:12)
+#129    RenderObject._layoutWithoutResize (package:flutter/src/rendering/object.dart:2771:7)
+#130    PipelineOwner.flushLayout (package:flutter/src/rendering/object.dart:1174:18)
+#131    PipelineOwner.flushLayout (package:flutter/src/rendering/object.dart:1187:15)
+#132    AutomatedTestWidgetsFlutterBinding.drawFrame (package:flutter_test/src/binding.dart:2434:27)
+#133    RendererBinding._handlePersistentFrameCallback (package:flutter/src/rendering/binding.dart:558:5)
+#134    SchedulerBinding._invokeFrameCallback (package:flutter/src/scheduler/binding.dart:1430:15)
+#135    SchedulerBinding.handleDrawFrame (package:flutter/src/scheduler/binding.dart:1345:9)
+#136    AutomatedTestWidgetsFlutterBinding.pump.<anonymous closure> (package:flutter_test/src/binding.dart:2261:9)
+#139    TestAsyncUtils.guard (package:flutter_test/src/test_async_utils.dart:74:41)
+#140    AutomatedTestWidgetsFlutterBinding.pump (package:flutter_test/src/binding.dart:2250:27)
+#141    WidgetTester.pumpWidget.<anonymous closure> (package:flutter_test/src/widget_tester.dart:598:22)
+#144    TestAsyncUtils.guard (package:flutter_test/src/test_async_utils.dart:74:41)
+#145    WidgetTester.pumpWidget (package:flutter_test/src/widget_tester.dart:595:27)
+#146    main.<anonymous closure> (file:///C:/Users/hellx/OneDrive/Documentos/Vida%20Universitaria/Codigos/Proyecto-Integrador-III/test/widget_test.dart:29:18)
+#147    testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:29)
+<asynchronous suspension>
+#148    TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided 5 frames from dart:async and package:stack_trace)
+
+Image provider: AssetImage(bundle: null, name: "assets/images/mapa_campus.png")
+Image key: AssetBundleImageKey(bundle: PlatformAssetBundle#9acc4(), name:
+  "assets/images/mapa_campus.png", scale: 1.0)
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:04 +17 -1: C:/Users/hellx/OneDrive/Documentos/Vida Universitaria/Codigos/Proyecto-Integrador-III/test/widget_test.dart: MapaCampusScreen se construye sin excepciones [E]                           
+  Test failed. See exception logs above.
+  The test description was: MapaCampusScreen se construye sin excepciones
+  
+
+To run this test again: C:\Users\hellx\develop\flutter\bin\cache\dart-sdk\bin\dart.exe test C:/Users/hellx/OneDrive/Documentos/Vida Universitaria/Codigos/Proyecto-Integrador-III/test/widget_test.dart -p vm --plain-name "MapaCampusScreen se construye sin excepciones"
+00:04 +17 -1: Some tests failed.                                                                                                                                                                       
