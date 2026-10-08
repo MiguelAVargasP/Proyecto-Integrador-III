@@ -25,6 +25,19 @@ class CombatScene {
   /// pantalla real, que casi siempre es mucho más grande.
   Size logicalSize = const Size(320, 180);
 
+  /// Segundos restantes de pausa total de la escena (congela input,
+  /// update, físicas y colisiones; el render sigue mostrando el último
+  /// frame). Genérico a nivel de motor — cualquier juego puede usarlo
+  /// para un "hit-pause"/freeze-frame en un golpe importante, sin que el
+  /// motor necesite saber qué es un golpe.
+  double pausaRestante = 0.0;
+
+  /// Pide una pausa de `segundos`; si ya hay una pausa más larga en
+  /// curso, no la acorta.
+  void solicitarPausa(double segundos) {
+    if (segundos > pausaRestante) pausaRestante = segundos;
+  }
+
   Entity addEntity(Entity entity) {
     entities.add(entity);
     return entity;

@@ -23,3 +23,9 @@ flutter:
     - assets/images/
     - assets/images/escenarios/
     - assets/images/personajes/
+    - assets/images/personajes/combate/
+
+  fonts:
+    - family: PixelifySans
+      fonts:
+        - asset: assets/fonts/PixelifySans.ttf

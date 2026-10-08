@@ -58,6 +58,18 @@ class _CombatLoopState extends State<CombatLoop>
     _ultimoElapsed = elapsed;
     if (deltaSegundos <= 0) return;
 
+    // Hit-pause / freeze-frame: si la escena pidió una pausa (ver
+    // `CombatScene.solicitarPausa`), este frame NO corre input/update/
+    // physics/collision — solo se consume tiempo de pausa y se vuelve a
+    // pintar el último frame (así el "congelamiento" es visible, no solo
+    // una ausencia de cambios).
+    if (widget.scene.pausaRestante > 0.0) {
+      widget.scene.pausaRestante -= deltaSegundos;
+      setState(() {});
+      widget.onTick?.call();
+      return;
+    }
+
     // 1 - INPUT
     widget.inputManager.update();
     widget.scene.handleInput(widget.inputManager);
