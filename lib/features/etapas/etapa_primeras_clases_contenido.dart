@@ -51,7 +51,7 @@ class _PrimerasClasesScreenState extends State<_PrimerasClasesScreen> {
       opciones: [
         _Opcion(
           texto: 'Asistir a todas las clases y tomar notas detalladas',
-          descripcion: 'Aumenta tu preparacion pero puede generar mas estres por la carga.',
+          descripcion: 'Aumenta tu preparacion pero puede generar mas GTD por la carga.',
           efectoEstres: 5,
           efectoTiempo: {'Clases y seminarios': 3},
         ),
@@ -196,7 +196,7 @@ class _PrimerasClasesScreenState extends State<_PrimerasClasesScreen> {
     if (deltaEstres > 0) {
       estadoJuego.ajustarEstres(deltaEstres);
       estadoJuego.registrarDecision(
-          'Evento imprevisto: ${evento.titulo} (+$deltaEstres estres)');
+          'Evento imprevisto: ${evento.titulo} (+$deltaEstres GTD)');
     }
 
     // Mostrar reflexión (US-11)

@@ -46,7 +46,7 @@ class ReflexionEtapa extends StatelessWidget {
             Text(
               'Has completado "$nombreEtapa".\n\n'
               'Tomate un momento para reflexionar sobre lo que viviste:\n\n'
-              '• Como se sintio tu nivel de estres?',
+              '• Como se sintio tu nivel de GTD?',
               style: const TextStyle(color: Colors.white70, fontSize: 14),
             ),
             const SizedBox(height: 16),
@@ -67,7 +67,7 @@ class ReflexionEtapa extends StatelessWidget {
                     ),
                     const SizedBox(height: 12),
                     _filaResumen(
-                      'Nivel de estres',
+                      'Nivel de GTD',
                       '$nivelEstres / 100',
                       nivelEstres < 30
                           ? Colors.greenAccent

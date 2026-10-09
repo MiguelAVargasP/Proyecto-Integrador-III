@@ -72,7 +72,7 @@ class _CajaDialogoState extends State<CajaDialogo> {
             style: TextStyle(color: Colors.orange, fontWeight: FontWeight.bold),
           ),
           content: const Text(
-            'Esta decisión puede afectar significativamente tu preparación y nivel de estrés. ¿Deseas continuar?',
+            'Esta decisión puede afectar significativamente tu preparación y nivel de GTD. ¿Deseas continuar?',
             style: TextStyle(color: Colors.white70),
           ),
           actions: [

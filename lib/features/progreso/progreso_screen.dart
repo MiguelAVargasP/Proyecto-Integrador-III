@@ -64,7 +64,7 @@ class ProgresoScreen extends StatelessWidget {
             const SizedBox(height: 24),
 
             // Nivel de estrés
-            _tituloSeccion('Nivel de estrés'),
+            _tituloSeccion('Nivel de GTD'),
             const SizedBox(height: 8),
             Row(
               children: [

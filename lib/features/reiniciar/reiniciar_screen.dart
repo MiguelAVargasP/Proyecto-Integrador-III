@@ -43,7 +43,7 @@ class ReiniciarScreen extends StatelessWidget {
             const SizedBox(height: 8),
             const Text(
               'Se borrará todo tu progreso actual: etapas completadas, '
-              'nivel de estrés, decisiones tomadas e insignias obtenidas. '
+              'nivel de GTD, decisiones tomadas e insignias obtenidas. '
               'Esta acción no se puede deshacer.',
               style: TextStyle(color: Colors.white70, fontSize: 14),
             ),

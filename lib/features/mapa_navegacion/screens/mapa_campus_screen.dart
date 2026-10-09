@@ -202,7 +202,7 @@ class _MapaCampusScreenState extends State<MapaCampusScreen>
     final semana = estadoJuego.semanaActual;
     if (semana < EstadoJuego.totalSemanas) {
       estadoJuego.completarSemana(semana);
-      _aviso('¡Semana $semana completada! Estrés: ${estadoJuego.nivelEstres}/100');
+      _aviso('¡Semana $semana completada! GTD: ${estadoJuego.nivelEstres}/100');
       await _mostrarIntroSemana();
       return;
     }

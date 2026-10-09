@@ -125,12 +125,12 @@ class _GestionTiempoScreenState extends State<_GestionTiempoScreen>
               String estresText;
               if (deltaEstres < 0) {
                 estresText =
-                    'Reduce estres ($deltaEstres * $horas = ${deltaEstres * horas})';
+                    'Reduce GTD ($deltaEstres * $horas = ${deltaEstres * horas})';
               } else if (deltaEstres > 0) {
                 estresText =
-                    'Aumenta estres ($deltaEstres * $horas = ${deltaEstres * horas})';
+                    'Aumenta GTD ($deltaEstres * $horas = ${deltaEstres * horas})';
               } else {
-                estresText = 'Sin efecto de estres';
+                estresText = 'Sin efecto de GTD';
               }
               return Card(
                 color: Colors.grey[900],

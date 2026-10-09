@@ -356,8 +356,8 @@ class _ParcialCombateScreenState extends State<ParcialCombateScreen> {
                   const SizedBox(height: 6),
                   Text(
                     gano
-                        ? 'Tu preparación dio resultado. El estrés baja un poco.'
-                        : 'Con más preparación irá mejor. El estrés sube un poco.',
+                        ? 'Tu preparación dio resultado. El GTD baja un poco.'
+                        : 'Con más preparación irá mejor. El GTD sube un poco.',
                     textAlign: TextAlign.center,
                     style: _fuente(13, const Color(0xFFB8C4DC), negrita: false),
                   ),

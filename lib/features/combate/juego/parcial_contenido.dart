@@ -61,7 +61,7 @@ class _ParcialIntroState extends State<_ParcialIntro> {
             ),
             const SizedBox(height: 8),
             Text(
-              'Nivel de estrés acumulado: ${estadoJuego.nivelEstres}/100',
+              'Nivel de GTD acumulado: ${estadoJuego.nivelEstres}/100',
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 24),
@@ -102,7 +102,7 @@ class _ParcialIntroState extends State<_ParcialIntro> {
     if (deltaEstres > 0) {
       estadoJuego.ajustarEstres(deltaEstres);
       estadoJuego.registrarDecision(
-          'Evento imprevisto: ${evento.titulo} (+$deltaEstres estres)');
+          'Evento imprevisto: ${evento.titulo} (+$deltaEstres GTD)');
     }
 
     // US-11: Momento de reflexión antes de completar

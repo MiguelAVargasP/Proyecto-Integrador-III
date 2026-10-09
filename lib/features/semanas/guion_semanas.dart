@@ -29,15 +29,15 @@ class GuionSemanas {
     'B': 'Bloque B.png',
     'C': 'Bloque C.png',
     'D': 'Bloque D.png',
-    'E': 'Bloque F.png', // TODO(arte): falta Bloque E.png — se usa F como cortinilla
+    'E': 'Bloque E.png', // TODO(arte): falta Bloque E.png — se usa F como cortinilla
     'F': 'Bloque F.png',
     'G': 'Bloque G.png',
-    'H': 'Bloque G.png', // TODO(arte): falta Bloque H.png — se usa G como cortinilla
+    'H': 'Bloque H.jpeg', // TODO(arte): falta Bloque H.png — se usa G como cortinilla
     'I': 'Bloque I.png',
     'J': 'Bloque J.png',
     'K': 'Bloque K.png',
     'L': 'Bloque L.png',
-    'TEMPLO': 'Bloque C.png', // TODO(arte): falta imagen del Templo — se usa C como cortinilla
+    'TEMPLO': 'Templo.jpeg', // TODO(arte): falta imagen del Templo — se usa C como cortinilla
   };
 
   /// Intro narrativa de la semana (la voz en cursiva del guion), usada como

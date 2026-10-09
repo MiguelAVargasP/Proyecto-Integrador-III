@@ -112,7 +112,7 @@ class _GestionTiempoScreenState extends State<_GestionTiempoScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          'Distribucion confirmada: estrés $prevEstres → $nuevoEstres',
+          'Distribucion confirmada: GTD $prevEstres → $nuevoEstres',
         ),
         backgroundColor: nuevoEstres > 60
             ? Colors.redAccent
@@ -331,15 +331,15 @@ class _GestionTiempoScreenState extends State<_GestionTiempoScreen> {
 
     if (esCero) {
       color = Colors.white38;
-      texto = 'Sin efecto de estres';
+      texto = 'Sin efecto de GTD';
       icono = Icons.help_outline;
     } else if (esNegativo) {
       color = Colors.greenAccent;
-      texto = 'Reduce ${-deltaTotal} puntos de estres';
+      texto = 'Reduce ${-deltaTotal} puntos de GTD';
       icono = Icons.arrow_downward;
     } else {
       color = Colors.redAccent;
-      texto = 'Aumenta $deltaTotal puntos de estres';
+      texto = 'Aumenta $deltaTotal puntos de GTD';
       icono = Icons.arrow_upward;
     }
 

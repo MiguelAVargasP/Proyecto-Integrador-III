@@ -75,7 +75,7 @@ class MenuPrincipalScreen extends StatelessWidget {
             _opcionMenu(
               icono: JuegoIdentidad.iconoProgreso(),
               titulo: 'Ver mi progreso',
-              descripcion: 'Consulta tus etapas completadas, estres e insignias',
+              descripcion: 'Consulta tus etapas completadas, GTD e insignias',
               color: JuegoIdentidad.acento1,
               onTap: () => _abrirProgreso(context),
             ),
@@ -149,7 +149,7 @@ class MenuPrincipalScreen extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             _filaEstado('Etapas', '${estadoJuego.etapasCompletadas}/${EstadoJuego.totalEtapas}'),
-            _filaEstado('Estres', '${estadoJuego.nivelEstres}/100'),
+            _filaEstado('GTD', '${estadoJuego.nivelEstres}/100'),
             _filaEstado('Insignias', '${estadoJuego.insigniasObtenidas.length}'),
             _filaEstado('Decisiones', '${estadoJuego.decisionesTomadas.length}'),
           ],

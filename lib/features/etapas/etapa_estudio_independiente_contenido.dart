@@ -40,7 +40,7 @@ class _EstudioIndependienteScreenState
 
   final List<_Linea> _lineas = [
     _Linea(
-      texto: 'El parcial se acerca y tu nivel de estres aumenta. Necesitas decidir como prepararte.',
+      texto: 'El parcial se acerca y tu nivel de GTD aumenta. Necesitas decidir como prepararte.',
       hablante: 'Narrador',
     ),
     _Linea(
@@ -68,7 +68,7 @@ class _EstudioIndependienteScreenState
       ],
     ),
     _Linea(
-      texto: 'Tras horas de estudio, sientes que estás listo para el parcial. El estres disminuye y tu confianza aumenta.',
+      texto: 'Tras horas de estudio, sientes que estás listo para el parcial. El GTD disminuye y tu confianza aumenta.',
       hablante: 'Narrador',
       esFinal: true,
     ),
@@ -201,7 +201,7 @@ class _EstudioIndependienteScreenState
     if (deltaEstres > 0) {
       estadoJuego.ajustarEstres(deltaEstres);
       estadoJuego.registrarDecision(
-          'Evento imprevisto: ${evento.titulo} (+$deltaEstres estres)');
+          'Evento imprevisto: ${evento.titulo} (+$deltaEstres GTD)');
     }
 
     // Mostrar reflexión (US-11)

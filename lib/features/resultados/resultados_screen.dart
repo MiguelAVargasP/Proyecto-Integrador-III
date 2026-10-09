@@ -194,7 +194,7 @@ class ResultadosScreen extends StatelessWidget {
         _tituloSeccion('Tus estadísticas'),
         const SizedBox(height: 8),
         _filaStat('Etapas completadas', '$etapasCompletadas / $totalEtapas'),
-        _filaStat('Nivel de estrés', '$nivelEstres / 100'),
+        _filaStat('Nivel de GTD', '$nivelEstres / 100'),
         _filaStat('Horas de estudio', '$estudioHoras h'),
         _filaStat('Decisiones tomadas', '${decisionesTomadas.length}'),
         _filaStat('Insignias', '${insigniasObtenidas.length}'),
