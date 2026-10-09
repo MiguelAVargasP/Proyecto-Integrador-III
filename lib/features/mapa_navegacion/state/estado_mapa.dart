@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 /// Estado del progreso de navegación por el mapa: qué escena es la actual
 /// (RF-03) y cuáles ya fueron visitadas (RF-04, historia US-04 — se deja el
@@ -12,21 +14,96 @@ import 'package:flutter/foundation.dart';
 /// o de migrar a un `Notifier` de Riverpod más adelante — no depende de
 /// ningún widget de este archivo.
 class EstadoMapa extends ChangeNotifier {
+  static const _claveMapa = 'partida_mapa';
+
   String? _escenaActualId;
   final Set<String> _escenasVisitadas = {};
+  final Set<String> _etapasCompletadas = {};
 
   String? get escenaActualId => _escenaActualId;
   Set<String> get escenasVisitadas => Set.unmodifiable(_escenasVisitadas);
+  Set<String> get etapasCompletadas => Set.unmodifiable(_etapasCompletadas);
 
   bool fueVisitada(String escenaId) => _escenasVisitadas.contains(escenaId);
   bool esEscenaActual(String escenaId) => _escenaActualId == escenaId;
+  bool etapaCompletada(String escenaId) => _etapasCompletadas.contains(escenaId);
 
-  /// Se llama al navegar hacia una escena (RF-03) y marca la escena como
-  /// visitada (insumo directo para US-04).
   void seleccionarEscena(String escenaId) {
     _escenaActualId = escenaId;
     _escenasVisitadas.add(escenaId);
     notifyListeners();
+  }
+
+  /// Marca una etapa del ciclo estudiantil (FASE_2, FASE_3) como completada.
+  /// Se llama desde la escena jugable al finalizarla con éxito.
+  void completarEtapa(String escenaId) {
+    _etapasCompletadas.add(escenaId);
+    notifyListeners();
+  }
+
+  /// Borra escena actual, escenas visitadas y etapas completadas (al
+  /// reiniciar el recorrido).
+  void resetear() {
+    _escenaActualId = null;
+    _escenasVisitadas.clear();
+    _etapasCompletadas.clear();
+    notifyListeners();
+    guardar();
+  }
+
+  // --- US-20: persistencia del mapa ---
+
+  Map<String, dynamic> toJson() => {
+        'escenaActualId': _escenaActualId,
+        'escenasVisitadas': _escenasVisitadas.toList(),
+        'etapasCompletadas': _etapasCompletadas.toList(),
+      };
+
+  void fromJson(Map<String, dynamic> json) {
+    _escenaActualId = json['escenaActualId'] as String?;
+    final visJson = json['escenasVisitadas'] as List<dynamic>?;
+    if (visJson != null) {
+      _escenasVisitadas.clear();
+      _escenasVisitadas.addAll(visJson.cast<String>());
+    }
+    final etaJson = json['etapasCompletadas'] as List<dynamic>?;
+    if (etaJson != null) {
+      _etapasCompletadas.clear();
+      _etapasCompletadas.addAll(etaJson.cast<String>());
+    }
+    notifyListeners();
+  }
+
+  Future<bool> guardar() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final json = jsonEncode(toJson());
+      return await prefs.setString(_claveMapa, json);
+    } catch (_) {
+      return false;
+    }
+  }
+
+  Future<bool> cargar() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final jsonStr = prefs.getString(_claveMapa);
+      if (jsonStr == null) return false;
+      final json = jsonDecode(jsonStr) as Map<String, dynamic>;
+      fromJson(json);
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  Future<bool> borrarGuardado() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      return await prefs.remove(_claveMapa);
+    } catch (_) {
+      return false;
+    }
   }
 }
 

@@ -1,0 +1,30 @@
+﻿Analyzing Proyecto-Integrador-III...                            
+
+   info - Parameters ''x', 'y', and 'maxHealth'' could be super parameters. Trying converting ''x', 'y', and 'maxHealth'' to super parameters - lib\features\combate\juego\fighter.dart:113:3 - use_super_parameters
+   info - Use 'const' for final variables initialized to a constant value. Try replacing 'final' with 'const' - lib\features\combate\juego\fighter.dart:895:5 - prefer_const_declarations
+   info - Use 'const' with the constructor to improve performance. Try adding the 'const' keyword to the constructor invocation - lib\features\combate\pantallas\parcial_combate_screen.dart:375:28 - prefer_const_constructors
+warning - Unused import: '../../core/estado_juego.dart'. Try removing the import directive - lib\features\menu_inicio\menu_inicio_screen.dart:4:8 - unused_import
+   info - Use 'const' with the constructor to improve performance. Try adding the 'const' keyword to the constructor invocation - lib\features\menu_inicio\menu_inicio_screen.dart:55:19 - prefer_const_constructors
+  error - Local variable '_encabezado' can't be referenced before it is declared. Try moving the declaration to before the first use, or renaming the local variable so that it doesn't hide a name from an enclosing scope - lib\features\semanas\flujo_semanas_screen.dart:109:15 - referenced_before_declaration
+  error - Local variable '_listaBloques' can't be referenced before it is declared. Try moving the declaration to before the first use, or renaming the local variable so that it doesn't hide a name from an enclosing scope - lib\features\semanas\flujo_semanas_screen.dart:120:23 - referenced_before_declaration
+  error - Local variable '_bloqueado' can't be referenced before it is declared. Try moving the declaration to before the first use, or renaming the local variable so that it doesn't hide a name from an enclosing scope - lib\features\semanas\flujo_semanas_screen.dart:121:23 - referenced_before_declaration
+  error - Local variable '_barraAccion' can't be referenced before it is declared. Try moving the declaration to before the first use, or renaming the local variable so that it doesn't hide a name from an enclosing scope - lib\features\semanas\flujo_semanas_screen.dart:123:15 - referenced_before_declaration
+warning - Dead code. Try removing the code, or fixing the code before it so that it can be reached - lib\features\semanas\flujo_semanas_screen.dart:127:3 - dead_code
+   info - The local variable '_encabezado' starts with an underscore. Try renaming the variable to not start with an underscore - lib\features\semanas\flujo_semanas_screen.dart:127:10 - no_leading_underscores_for_local_identifiers
+   info - The local variable '_listaBloques' starts with an underscore. Try renaming the variable to not start with an underscore - lib\features\semanas\flujo_semanas_screen.dart:163:10 - no_leading_underscores_for_local_identifiers
+   info - The local variable '_bloqueado' starts with an underscore. Try renaming the variable to not start with an underscore - lib\features\semanas\flujo_semanas_screen.dart:192:10 - no_leading_underscores_for_local_identifiers
+   info - The local variable '_barraAccion' starts with an underscore. Try renaming the variable to not start with an underscore - lib\features\semanas\flujo_semanas_screen.dart:221:10 - no_leading_underscores_for_local_identifiers
+  error - Expected to find ';' - lib\features\semanas\flujo_semanas_screen.dart:260:1 - expected_token
+  error - Expected to find ')' - lib\features\semanas\flujo_semanas_screen.dart:261:1 - expected_token
+  error - Expected to find '}' - lib\features\semanas\flujo_semanas_screen.dart:261:1 - expected_token
+warning - Unused import: 'features/mapa_navegacion/screens/mapa_campus_screen.dart'. Try removing the import directive - lib\main.dart:5:8 - unused_import
+warning - Unused import: 'features/menu_principal/menu_principal_screen.dart'. Try removing the import directive - lib\main.dart:7:8 - unused_import
+   info - Use 'const' with the constructor to improve performance. Try adding the 'const' keyword to the constructor invocation - lib\main.dart:61:31 - prefer_const_constructors
+
+flutter : 20 issues found. (ran in 2.2s)
+En línea: 1 Carácter: 93
++ ... digos\Proyecto-Integrador-III'; flutter analyze --no-pub 2>&1 | Out-F ...
++                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (20 issues found. (ran in 2.2s):String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

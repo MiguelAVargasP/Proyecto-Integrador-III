@@ -34,18 +34,18 @@ class EscenaCampus {
 /// sin contenido registrado sigue siendo navegable y muestra un
 /// placeholder, no se oculta del mapa.
 const List<EscenaCampus> escenasCampus = [
-  EscenaCampus(id: 'A', nombre: 'Bloque A', posicionRelativa: Offset(0.296, 0.563)),
-  EscenaCampus(id: 'B', nombre: 'Bloque B', posicionRelativa: Offset(0.335, 0.663)),
-  EscenaCampus(id: 'C', nombre: 'Bloque C', posicionRelativa: Offset(0.417, 0.663)),
-  EscenaCampus(id: 'D', nombre: 'Bloque D', posicionRelativa: Offset(0.493, 0.492)),
-  EscenaCampus(id: 'E', nombre: 'Bloque E', posicionRelativa: Offset(0.661, 0.455)),
-  EscenaCampus(id: 'F', nombre: 'Bloque F', posicionRelativa: Offset(0.727, 0.546)),
-  EscenaCampus(id: 'G', nombre: 'Bloque G', posicionRelativa: Offset(0.830, 0.623)),
-  EscenaCampus(id: 'H', nombre: 'Bloque H', posicionRelativa: Offset(0.792, 0.464)),
-  EscenaCampus(id: 'I', nombre: 'Bloque I', posicionRelativa: Offset(0.727, 0.255)),
-  EscenaCampus(id: 'J', nombre: 'Bloque J', posicionRelativa: Offset(0.490, 0.739)),
-  EscenaCampus(id: 'K', nombre: 'Bloque K', posicionRelativa: Offset(0.544, 0.191)),
-  EscenaCampus(id: 'L', nombre: 'Bloque L', posicionRelativa: Offset(0.831, 0.188)),
+  EscenaCampus(id: 'A', nombre: 'Bloque A', posicionRelativa: Offset(0.263, 0.575)),
+  EscenaCampus(id: 'B', nombre: 'Bloque B', posicionRelativa: Offset(0.296, 0.673)),
+  EscenaCampus(id: 'C', nombre: 'Bloque C', posicionRelativa: Offset(0.412, 0.675)),
+  EscenaCampus(id: 'D', nombre: 'Bloque D', posicionRelativa: Offset(0.492, 0.475)),
+  EscenaCampus(id: 'E', nombre: 'Bloque E', posicionRelativa: Offset(0.684, 0.428)),
+  EscenaCampus(id: 'F', nombre: 'Bloque F', posicionRelativa: Offset(0.747, 0.507)),
+  EscenaCampus(id: 'G', nombre: 'Bloque G', posicionRelativa: Offset(0.795, 0.560)),
+  EscenaCampus(id: 'H', nombre: 'Bloque H', posicionRelativa: Offset(0.809, 0.420)),
+  EscenaCampus(id: 'I', nombre: 'Bloque I', posicionRelativa: Offset(0.745, 0.236)),
+  EscenaCampus(id: 'J', nombre: 'Bloque J', posicionRelativa: Offset(0.481, 0.755)),
+  EscenaCampus(id: 'K', nombre: 'Bloque K', posicionRelativa: Offset(0.557, 0.189)),
+  EscenaCampus(id: 'L', nombre: 'Bloque L', posicionRelativa: Offset(0.827, 0.158)),
   // A diferencia de A-L, el Templo no tiene un círculo con letra, pero sí
   // tiene su propio marcador visual en la imagen: la etiqueta rectangular
   // morada con el texto "TEMPLO". El hotspot se ubica exactamente sobre
@@ -53,6 +53,28 @@ const List<EscenaCampus> escenasCampus = [
   EscenaCampus(
     id: 'TEMPLO',
     nombre: 'Templo',
-    posicionRelativa: Offset(0.156, 0.446),
+    posicionRelativa: Offset(0.125, 0.435),
+  ),
+  // Etapas del ciclo estudiantil (US-05): hitos del recorrido, no edificios
+  // físicos — aparecen en el mapa como marcadores de progreso.
+  //
+  // GESTION (US-06) va primero en el orden narrativo: el jugador reparte
+  // su tiempo antes de vivir las primeras clases y el estudio
+  // independiente. Usa la misma clave 'GESTION' que ya tenía registrada
+  // `registro_inicial.dart` — no hizo falta tocar ese archivo.
+  EscenaCampus(
+    id: 'GESTION',
+    nombre: 'Gestión del tiempo',
+    posicionRelativa: Offset(0.20, 0.40),
+  ),
+  EscenaCampus(
+    id: 'FASE_2',
+    nombre: 'Primeras clases',
+    posicionRelativa: Offset(0.35, 0.35),
+  ),
+  EscenaCampus(
+    id: 'FASE_3',
+    nombre: 'Estudio independiente',
+    posicionRelativa: Offset(0.55, 0.30),
   ),
 ];
