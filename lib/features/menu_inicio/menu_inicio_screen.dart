@@ -2,119 +2,114 @@ import 'package:flutter/material.dart';
 
 import '../../core/audio/audio_service.dart';
 import '../../juego_identidad.dart';
-import '../semanas/flujo_semanas_screen.dart';
 import '../mapa_navegacion/screens/mapa_campus_screen.dart';
 
-/// Pantalla de INICIO del juego (distinta del menú post-escena). Muestra la
-/// imagen de portada `Menu.png` a pantalla completa y un botón de inicio que
-/// arranca la lógica del juego serio (soundtrack en loop + flujo de 8 semanas).
+/// Pantalla de INICIO del juego. La portada `Menu.png` ya trae dibujados el
+/// título ("Primiparo") y el botón "EMPEZAR", así que esta pantalla NO agrega
+/// títulos ni botones propios encima: solo coloca un área táctil invisible
+/// exactamente sobre el botón dibujado en la imagen.
 ///
-/// No reemplaza a `MenuPrincipalScreen` (el menú de progreso/resultados que
-/// ya existía): este es la nueva puerta de entrada. Si hay partida guardada,
-/// ofrece además "Continuar" (reanuda el flujo) y "Ver mapa" (acceso libre).
-class MenuInicioScreen extends StatelessWidget {
+/// La imagen se dibuja con `BoxFit.cover`; para que el área táctil siga al
+/// botón en cualquier proporción de pantalla, la posición se calcula con la
+/// misma matemática de `cover` (escala = max(ancho/imgAncho, alto/imgAlto),
+/// imagen centrada y recortada).
+class MenuInicioScreen extends StatefulWidget {
   const MenuInicioScreen({super.key});
+
+  @override
+  State<MenuInicioScreen> createState() => _MenuInicioScreenState();
+}
+
+class _MenuInicioScreenState extends State<MenuInicioScreen> {
+  // Tamaño real de Menu.png.
+  static const double _imgAncho = 1672;
+  static const double _imgAlto = 941;
+
+  // Botón "EMPEZAR" dentro de la imagen, como fracción de su ancho/alto
+  // (medido sobre el PNG, incluyendo el borde oscuro del botón).
+  static const double _izq = 0.384;
+  static const double _der = 0.616;
+  static const double _arr = 0.541;
+  static const double _aba = 0.640;
+
+  bool _presionado = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Estar en el menú significa que no hay partida en curso: si venimos de
+    // la pantalla final, el audio de cierre no debe seguir sonando aquí.
+    AudioService.instance.detenerFinal();
+  }
+
+  /// Arranca la partida: música de fondo en bucle y mapa del campus, que es
+  /// el escenario donde transcurre la historia semana a semana.
+  void _empezar() {
+    AudioService.instance.iniciarSoundtrack();
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => const MapaCampusScreen()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          // Imagen de portada del juego.
-          Image.asset(
-            'assets/images/escenarios/Menu.png',
-            fit: BoxFit.cover,
-            errorBuilder: (context, error, stack) => Container(
-              color: JuegoIdentidad.fondo,
-            ),
-          ),
-          // Velo oscuro para que los botones resalten sobre la portada.
-          Positioned.fill(
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.transparent,
-                    Colors.black.withValues(alpha: 0.75),
-                  ],
+      backgroundColor: JuegoIdentidad.fondo,
+      body: LayoutBuilder(
+        builder: (context, c) {
+          final escala = (c.maxWidth / _imgAncho) > (c.maxHeight / _imgAlto)
+              ? c.maxWidth / _imgAncho
+              : c.maxHeight / _imgAlto;
+          final ancho = _imgAncho * escala;
+          final alto = _imgAlto * escala;
+          final dx = (c.maxWidth - ancho) / 2;
+          final dy = (c.maxHeight - alto) / 2;
+
+          final rect = Rect.fromLTRB(
+            dx + ancho * _izq,
+            dy + alto * _arr,
+            dx + ancho * _der,
+            dy + alto * _aba,
+          );
+
+          return Stack(
+            fit: StackFit.expand,
+            children: [
+              Image.asset(
+                'assets/images/escenarios/Menu.png',
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stack) =>
+                    Container(color: JuegoIdentidad.fondo),
+              ),
+              Positioned.fromRect(
+                rect: rect,
+                child: Semantics(
+                  button: true,
+                  label: 'Empezar',
+                  child: GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTapDown: (_) => setState(() => _presionado = true),
+                    onTapCancel: () => setState(() => _presionado = false),
+                    onTapUp: (_) => setState(() => _presionado = false),
+                    onTap: _empezar,
+                    // Sin dibujo propio: solo un leve oscurecimiento al
+                    // presionar, para que el botón de la imagen "responda".
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 80),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(rect.height * 0.28),
+                        color: _presionado
+                            ? Colors.black.withValues(alpha: 0.22)
+                            : Colors.transparent,
+                      ),
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(24),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    JuegoIdentidad.titulo,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontFamily: 'PixelifySans',
-                      color: Colors.white,
-                      fontSize: 34,
-                      shadows: [
-                        Shadow(blurRadius: 8, color: Colors.black),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  const Text(
-                    'Un viaje de 8 semanas por tu primera experiencia universitaria',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.white70, fontSize: 14),
-                  ),
-                  const SizedBox(height: 28),
-                  FilledButton.icon(
-                    style: FilledButton.styleFrom(
-                      backgroundColor: JuegoIdentidad.acento1,
-                      minimumSize: const Size.fromHeight(54),
-                    ),
-                    icon: const Icon(Icons.play_arrow),
-                    label: const Text(
-                      'Iniciar recorrido',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    onPressed: () => _iniciar(context),
-                  ),
-                  const SizedBox(height: 12),
-                  OutlinedButton.icon(
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      side: const BorderSide(color: Colors.white54),
-                      minimumSize: const Size.fromHeight(48),
-                    ),
-                    icon: const Icon(Icons.map_outlined),
-                    label: const Text('Explorar el mapa'),
-                    onPressed: () {
-                      AudioService.instance.iniciarSoundtrack();
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => const MapaCampusScreen(),
-                        ),
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
+            ],
+          );
+        },
       ),
-    );
-  }
-
-  /// Arranca la partida: reanuda el soundtrack en loop y empuja el flujo de
-  /// las 8 semanas. Si es una partida nueva, arranca en la semana 1.
-  void _iniciar(BuildContext context) {
-    AudioService.instance.iniciarSoundtrack();
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => const FlujoSemanasScreen()),
     );
   }
 }

@@ -56,7 +56,7 @@ class OrientacionUpbApp extends StatelessWidget {
       // (progreso/resultados/decisiones) sigue disponible desde el mapa. Se
       // envuelve en `Builder` para tener un `context` debajo del Navigator.
       home: Builder(
-        builder: (context) => MenuInicioScreen(),
+        builder: (context) => const MenuInicioScreen(),
       ),
     );
   }

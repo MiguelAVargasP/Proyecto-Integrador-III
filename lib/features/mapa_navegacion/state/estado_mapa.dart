@@ -41,6 +41,16 @@ class EstadoMapa extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Borra escena actual, escenas visitadas y etapas completadas (al
+  /// reiniciar el recorrido).
+  void resetear() {
+    _escenaActualId = null;
+    _escenasVisitadas.clear();
+    _etapasCompletadas.clear();
+    notifyListeners();
+    guardar();
+  }
+
   // --- US-20: persistencia del mapa ---
 
   Map<String, dynamic> toJson() => {

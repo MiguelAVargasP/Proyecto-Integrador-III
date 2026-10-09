@@ -31,6 +31,10 @@ class AudioService {
   final AudioPlayer _efectos = AudioPlayer();
 
   bool _soundtrackSonando = false;
+  bool _finalSonando = false;
+
+  /// `true` mientras suena el audio de cierre (`Final.WAV`).
+  bool get finalSonando => _finalSonando;
 
   /// `true` mientras el soundtrack de fondo está activo.
   bool get soundtrackSonando => _soundtrackSonando;
@@ -43,6 +47,9 @@ class AudioService {
   /// Inicia (o reanuda) el soundtrack de fondo en bucle infinito.
   /// Es idempotente: si ya está sonando, no lo reinicia.
   Future<void> iniciarSoundtrack({double volumen = 0.45}) async {
+    // El audio de cierre NUNCA debe mezclarse con la música de fondo ni
+    // seguir sonando fuera de la pantalla final: se corta antes de arrancar.
+    await detenerFinal();
     if (_silenciado || _soundtrackSonando) return;
     try {
       await _musica.setReleaseMode(ReleaseMode.loop);
@@ -75,9 +82,22 @@ class AudioService {
       await _efectos.setReleaseMode(ReleaseMode.stop);
       await _efectos.setVolume(volumen);
       await _efectos.play(AssetSource('sounds/Final.WAV'));
+      _finalSonando = true;
     } catch (_) {
       // ignorar
     }
+  }
+
+  /// Detiene el audio de cierre (`Final.WAV`) si está sonando. Se llama al
+  /// salir de la pantalla final y antes de arrancar el soundtrack.
+  Future<void> detenerFinal() async {
+    if (!_finalSonando) return;
+    try {
+      await _efectos.stop();
+    } catch (_) {
+      // ignorar
+    }
+    _finalSonando = false;
   }
 
   /// Alterna el silencio global de la música de fondo.
@@ -101,6 +121,7 @@ class AudioService {
       // ignorar
     }
     _soundtrackSonando = false;
+    _finalSonando = false;
   }
 
   /// Libera los reproductores. Llamar solo al cerrar la app por completo.

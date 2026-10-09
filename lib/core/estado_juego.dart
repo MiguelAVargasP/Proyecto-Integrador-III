@@ -158,6 +158,40 @@ class EstadoJuego extends ChangeNotifier {
   /// Id del nodo (bloque A..L o 'TEMPLO') actual dentro de la semana.
   String? nodoActualId;
 
+  /// Bloques (A..L y 'TEMPLO') cuyo diálogo ya se completó en la semana
+  /// actual. Se vacía al completar la semana. Se persiste con la partida.
+  final Set<String> bloquesVisitadosSemana = {};
+
+  /// Todos los bloques con diálogo en el mapa (A-L y el Templo).
+  static const List<String> bloquesDeSemana = [
+    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'TEMPLO',
+  ];
+
+  /// Bloques OBLIGATORIOS para completar la semana: A-L. El Templo es
+  /// opcional (se puede visitar, pero no se exige).
+  static const List<String> bloquesObligatorios = [
+    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
+  ];
+
+  /// Cuántos bloques obligatorios ya se recorrieron esta semana.
+  int get obligatoriosVisitados => bloquesObligatorios
+      .where(bloquesVisitadosSemana.contains)
+      .length;
+
+  /// `true` cuando ya se recorrieron todos los bloques obligatorios.
+  bool get semanaListaParaCompletar =>
+      obligatoriosVisitados >= bloquesObligatorios.length;
+
+  /// Registra que el diálogo de un bloque se completó (y guarda la partida).
+  void marcarBloqueVisitado(String id) {
+    if (!bloquesDeSemana.contains(id)) return;
+    if (bloquesVisitadosSemana.add(id)) {
+      nodoActualId = id;
+      notifyListeners();
+      guardar();
+    }
+  }
+
   /// `true` una vez superado el evento del parcial (fin del recorrido).
   bool parcialSuperado = false;
 
@@ -172,7 +206,9 @@ class EstadoJuego extends ChangeNotifier {
     if (semanaActual == semana && semana < totalSemanas) {
       semanaActual = semana + 1;
     }
+    bloquesVisitadosSemana.clear();
     notifyListeners();
+    guardar();
   }
 
   /// Indica si una semana está desbloqueada para jugar. La semana 1 siempre
@@ -215,9 +251,11 @@ class EstadoJuego extends ChangeNotifier {
     // Reinicia también la progresión de las 8 semanas.
     semanaActual = 1;
     semanasCompletadas.clear();
+    bloquesVisitadosSemana.clear();
     nodoActualId = null;
     parcialSuperado = false;
     notifyListeners();
+    guardar();
   }
 
   // --- US-20: guardado, reanudación y gestión de partidas ---
@@ -233,6 +271,7 @@ class EstadoJuego extends ChangeNotifier {
         'semanaActual': semanaActual,
         'semanasCompletadas': semanasCompletadas.toList(),
         'nodoActualId': nodoActualId,
+        'bloquesVisitadosSemana': bloquesVisitadosSemana.toList(),
         'parcialSuperado': parcialSuperado,
       };
 
@@ -267,6 +306,11 @@ class EstadoJuego extends ChangeNotifier {
       semanasCompletadas.addAll(semJson.cast<int>());
     }
     nodoActualId = json['nodoActualId'] as String?;
+    final bloquesJson = json['bloquesVisitadosSemana'] as List<dynamic>?;
+    bloquesVisitadosSemana.clear();
+    if (bloquesJson != null) {
+      bloquesVisitadosSemana.addAll(bloquesJson.cast<String>());
+    }
     parcialSuperado = json['parcialSuperado'] as bool? ?? false;
     notifyListeners();
   }

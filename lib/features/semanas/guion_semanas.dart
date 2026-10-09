@@ -89,11 +89,13 @@ class GuionSemanas {
         opciones: [
           OpcionDialogo(
             textoOpcion1,
+            saltarA: 1,
             deltaEstres: delta1,
             decisionRegistrada: '[$contextoDecision] Eligió: $textoOpcion1',
           ),
           OpcionDialogo(
             textoOpcion2,
+            saltarA: 2,
             deltaEstres: delta2,
             decisionRegistrada: '[$contextoDecision] Eligió: $textoOpcion2',
           ),

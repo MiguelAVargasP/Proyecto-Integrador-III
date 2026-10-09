@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 import '../../../core/contenido_escena.dart';
 import '../../../core/estado_juego.dart';
-import '../../../core/audio/audio_service.dart';
 import '../../../features/mapa_navegacion/state/estado_mapa.dart';
 import '../../../features/eventos/evento_imprevisto.dart';
 import '../../../features/reflexion/reflexion_etapa.dart';
@@ -91,9 +90,10 @@ class _ParcialIntroState extends State<_ParcialIntro> {
     // US-05/RF-04: marcar etapa completada en mapa
     estadoMapa.completarEtapa('D');
 
-    // Audio de cierre: tras el evento del parcial se detiene el soundtrack de
-    // fondo y se reproduce EXCLUSIVAMENTE el audio 'Final' (RF de audio).
-    AudioService.instance.reproducirFinal();
+    // El audio de cierre ya NO se reproduce aquí: suena únicamente en la
+    // pantalla final (ver MapaCampusScreen._abrirFinal), para que no se
+    // escuche en el mapa ni en el menú principal.
+    estadoJuego.parcialSuperado = true;
 
     // US-07: Evento imprevisto aleatorio (opcional)
     final random = Random();
